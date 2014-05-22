@@ -1,0 +1,50 @@
+/*!
+Theme Name:     		The Round Theme
+Theme URI:      		http://markbaindesign.com
+Description:    		Hand-crafted for the round.
+Author:         		Mark Bain
+Author URI:     		http://markbaindesign.com
+Version:        		2.4.3.2
+*/
+
+@import "partials/mixins";
+@import "partials/variables";
+@import "partials/reset";
+@import "partials/base";
+
+// Layout
+@import "partials/layout/layout";
+@import "partials/layout/header";
+@import "partials/layout/footer";
+@import "partials/layout/sidebar";
+@import "partials/layout/grid";
+
+// Page and Post styles
+@import "partials/pages/page-post";
+@import "partials/pages/page-home";
+@import "partials/pages/page-blog";
+
+// Typography
+@import "partials/typo/typography";
+@import "partials/typo/webfonts";
+
+// Modules
+@import "partials/modules/social-media-module";
+
+// WordPress Global
+@import "partials/wp/wp";
+
+// WordPress Modules
+@import "partials/wp/widgets";
+@import "partials/wp/comments";
+
+// WordPress Plugins
+@import "partials/wp/plugins/wp-contact";
+@import "partials/wp/plugins/wp-paginate";
+
+// Navigation
+@import "partials/nav";
+
+// Helper Classes, Print, Etc
+@import "partials/helpers";
+@import "partials/print";
