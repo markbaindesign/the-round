@@ -9,7 +9,7 @@
 
 get_header(); ?>
 
-		<div id="container">
+		<div id="primary">
 			<div id="content" role="main">
 						<!-- code for line of recent title thumbnails -->
 <!-- <div id="recent-resources-small">
