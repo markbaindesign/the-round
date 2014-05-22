@@ -33,7 +33,7 @@
 							
 							echo '<span class="meta-text"'; 
 							
-							twentyten_posted_on();
+							theround_posted_on();
 							
 							echo '</span>';
 							
@@ -64,7 +64,7 @@
 <?php endif; ?>
 
 					<div class="entry-utility">
-						<?php twentyten_posted_in(); ?>
+						<?php theround_post_meta(); ?>
 						<?php edit_post_link( __( 'Edit', 'twentyten' ), '<span class="edit-link">', '</span>' ); ?>
 					</div><!-- .entry-utility -->
 				</div><!-- #post-## -->
