@@ -4,7 +4,7 @@ Theme URI:      		http://markbaindesign.com
 Description:    		Hand-crafted for the round.
 Author:         		Mark Bain
 Author URI:     		http://markbaindesign.com
-Version:        		2.4.3.3
+Version:        		2.4.3.4
 */
 /* ==========================================================================
    Mixins
@@ -2008,6 +2008,29 @@ li#title {
   float: left;
   width: 16%;
   margin-right: 3%;
+}
+
+/* Creatives Images */
+.creatives .creative-featured-image {
+  width: 20%;
+  margin-right: 20px;
+  float: left;
+}
+
+img.attachment-creatives-image {
+  width: 100%;
+  padding: 3%;
+  height: auto;
+  border: 1px solid #CCC;
+  border-radius: 50%;
+}
+img.attachment-creatives-image:hover {
+  opacity: .9;
+  border: 1px solid #bbb;
+}
+img.attachment-creatives-image:active {
+  opacity: .8;
+  border: 1px solid #aaa;
 }
 
 .home .readmore {
