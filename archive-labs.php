@@ -1,9 +1,8 @@
-<?php /* Template Name: Labs Page Template */ ?>
 <?php get_header(); ?>
-<div id="container">
+<div id="primary">
 	<div id="content" role="main">
 		<div id="recent-resources">	
-			 <h2 id="blog-title"><?php the_title(); ?></h2>
+			 <h2 id="blog-title">Labs</h2>
 			 <div id="more-info">
 				<p>
 					<a href="<?php echo home_url(); ?>/about-labs/" title="Read more about the 'labs' section of the round">What is <i>labs</i>?</a>

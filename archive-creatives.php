@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-	<div id="container">
+	<div id="primary">
 		<div id="content" role="main">
 
 
@@ -7,8 +7,7 @@
 				// Custom query to display creatives in random order
 				$args = array(
 					'post_type' => 'creatives',
-					'paged' => $paged,
-					'orderby' => 'rand'
+					'paged' => $paged
 				);
 
 				$query = new WP_Query( $args );
