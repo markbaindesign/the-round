@@ -47,7 +47,7 @@
 <?php endif; ?>
 
 					<div class="entry-utility">
-						<?php twentyten_posted_in(); ?>
+
 						<?php edit_post_link( __( 'Edit', 'twentyten' ), '<span class="edit-link">', '</span>' ); ?>
 					</div><!-- .entry-utility -->
 				</div><!-- #post-## -->
@@ -57,6 +57,5 @@
 					<div class="nav-next"><?php next_post_link( '%link', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'twentyten' ) . '</span>' ); ?></div>
 				</div><!-- #nav-below -->
 
-				<?php comments_template( '', true ); ?>
 
 <?php endwhile; // end of the loop. ?>
