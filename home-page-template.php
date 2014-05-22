@@ -6,7 +6,7 @@ Template Name: Home Page Template
 
 <?php get_header(); ?>
 
-<div id="container">
+<div id="primary">
 	<div id="content" role="main">
 	<div id="entry-edit-region">	
 	<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
