@@ -1,6 +1,6 @@
 # The Round WordPress theme 
 
-Version: 2.4
+Version: 2.4.3.1
 
 ## Author:
 
