@@ -1,0 +1,59 @@
+/* Header */
+
+#header {
+	position: relative;
+	padding: 0;
+	border-bottom: 1px solid #ccc;
+	overflow: hidden;
+	margin-bottom: 1em;
+
+	@include bp(small) {
+		padding: 0 3%;
+		background: #333;
+		min-height: 59px;
+		color: #f4f4f4;
+		border-bottom: 1px solid #ccc;
+		margin-bottom: 0;
+
+		h2 {
+			margin-bottom: 0;		
+		}
+	}
+}
+
+
+
+/* Site title */
+	
+#site-title {
+	margin: 15px 0;
+	padding: 0;
+	float: left;
+	width: 150px;
+	height: 138px;
+
+	@include bp(small) {
+		height: 29px;
+	}
+	
+	a {
+		display: block;
+		background: url(images/logo.png) no-repeat;
+		width: 150px;
+		height: 138px;
+	
+		@include bp(small) {
+			background: url(images/logotype.png) no-repeat;
+		}
+
+		&:hover {
+			opacity: .7;
+		}
+
+		&:active {
+			opacity: .5;
+		}
+
+	}
+
+}
