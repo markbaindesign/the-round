@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<div id="container">
+<div id="primary">
 	<div id="content" role="main">			<h2 id="blog-title">Titles</h2>
 
 		<div id="recent-resources" class="clearfix masonrycontainer">	
