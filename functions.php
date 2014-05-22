@@ -2,9 +2,15 @@
 
 // error_reporting(E_ALL | E_STRICT);
 
+/**
+ * Custom comment.
+ */
+require get_template_directory() . '/lib/inc/custom-comment.php';
+
 // Set up
 
-add_action( 'after_setup_theme', 'theround_theme_setup' );
+add_action( 'init', 'theround_theme_setup' );
+add_action( 'widgets_init', 'theround_widgets_init' );
 
 // Functions
  
@@ -24,12 +30,10 @@ function theround_theme_setup() {
 		add_action(	'login_head', 'theround_custom_login_styles');  
 		add_filter('admin_footer_text', 'theround_custom_footer_admin');  
 
-	// Custom Posts
-	
-		add_action('init', 'theround_register_custom_post_types');
-		add_filter('request', 'theround_custom_post_feed_request');		
+
 		
 	// Images
+set_post_thumbnail_size( 150, 150, true ); // default Post Thumbnail dimensions (cropped)
 	
 		add_image_size( 'homepage-thumb', 100, 100, true ); 
 		add_image_size( 'labs-thumb', 100, 141, true ); 
@@ -40,7 +44,11 @@ function theround_theme_setup() {
 		add_filter('twentyten_header_image_width','theround_header_width');
 
 }	
-	
+
+	// Theme support
+	add_theme_support( 'post-thumbnails' );
+
+
 define('MY_WORDPRESS_FOLDER',$_SERVER['DOCUMENT_ROOT']);
 define('MY_THEME_FOLDER',str_replace("\\",'/',dirname(__FILE__)));
 define('MY_THEME_PATH','/' . substr(MY_THEME_FOLDER,stripos(MY_THEME_FOLDER,'wp-content')));
@@ -59,215 +67,54 @@ function theround_register_menus() {
   
 }
 
-function wp_nav_menu_select( $args = array() ) {
-     
-    $defaults = array(
-        'theme_location' => '',
-        'menu_class' => 'select-menu',
-    );
-     
-    $args = wp_parse_args( $args, $defaults );
-     
-    if ( ( $menu_locations = get_nav_menu_locations() ) && isset( $menu_locations[ $args['theme_location'] ] ) ) {
-        $menu = wp_get_nav_menu_object( $menu_locations[ $args['theme_location'] ] );
-         
-        $menu_items = wp_get_nav_menu_items( $menu->term_id );
-        ?>
-            <select id="menu-<?php echo $args['theme_location'] ?>" class="<?php echo $args['menu_class'] ?>">
-                <option value=""><?php _e( 'Menu' ); ?></option>
-                <?php foreach( (array) $menu_items as $key => $menu_item ) : ?>
-                    <option value="<?php echo $menu_item->url ?>"><?php echo $menu_item->title ?></option>
-                <?php endforeach; ?>
-            </select>
-        <?php
-    }
-     
-    else {
-        ?>
-            <select class="menu-not-found">
-                <option value=""><?php _e( 'Menu Not Found' ); ?></option>
-            </select>
-			
-        <?php
-    }
- 
+/**
+ * Register Widget Areas
+ */
+function theround_widgets_init() {
+
+	register_sidebar( array(
+		'name'          => __( 'Sidebar', '_mbbasetheme' ),
+		'id'            => 'sidebar-1',
+		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+		'after_widget' => '</li>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>'
+	) );
+
+}
+
+function theround_load_scripts() {
+	
+	if ( !is_admin() ) {
+		
+		wp_enqueue_script( 'jquery' );
+
+		// Typekit script 
+		wp_enqueue_script( 'mbdtheround78-typekit', '//use.typekit.net/zxe7tjh.js');
+
+		// Custom scripts
+		wp_enqueue_script( 'customplugins', get_stylesheet_directory_uri() . '/assets/js/plugins.min.js', array(), NULL, true );
+		wp_enqueue_script( 'customscripts', get_stylesheet_directory_uri() . '/assets/js/main.min.js', array(), NULL, true );
+	}
+
 }
 
 /**
- * Custom Menu Walker for Responsive Menus
- *
- * Creates a <select> menu instead of the default
- * unordered list menus.
- *
- **/
-
-class Walker_Responsive_Menu extends Walker_Nav_Menu {
-
-	function start_lvl(&$output, $depth){
-      $indent = str_repeat("\t", $depth); // don't output children opening tag (`<ul>`)
-    }
-
-    function end_lvl(&$output, $depth){
-      $indent = str_repeat("\t", $depth); // don't output children closing tag
-    }
-
-    function start_el(&$output, $item, $depth, $args){
-      // add spacing to the title based on the depth
-      $item->title = str_repeat("&nbsp;", $depth * 4).$item->title;
-
-      parent::start_el(&$output, $item, $depth, $args);
-
-      // no point redefining this method too, we just replace the li tag...
-      $output = str_replace('<li', '<option', $output);
-    }
-
-    function end_el(&$output, $item, $depth){
-      $output .= "</option>\n"; // replace closing </li> with the option tag
-    }
-}
- 
-function theround_load_scripts() {
+ * Add Typekit Webfonts Inline Script
+ */	
+function mbdtheround78_typekit_inline() {
 	
-	wp_enqueue_script( 'jquery' );
-	//wp_enqueue_script( 'jquery-masonry', array( 'jquery' ) );
-
-	// Modernizer
-	wp_register_script( 'jquery-modernizr', get_stylesheet_directory_uri() . '/js/vendor/modernizr-2.6.2.min.js', array( 'jquery' ), TRUE);
-	wp_enqueue_script( 'jquery-modernizr' );
+	/* Conditionally loads the Typekit script inline if fonts are enqueued */
 	
-	// imagesLoaded
-	wp_register_script( 'imagesloaded', get_stylesheet_directory_uri() . '/js/vendor/imagesLoaded.pkgd.min.js', array( 'jquery' ), TRUE);
-	wp_enqueue_script( 'imagesloaded' );
-		
-	wp_register_script( 'html5-shiv', get_stylesheet_directory_uri() . '/js/vendor/html5-shiv.js', array( 'jquery' ), TRUE);
-	wp_enqueue_script( 'html5-shiv' );
-
-	wp_register_script( 'responsive-nav', get_stylesheet_directory_uri() . '/js/vendor/responsive-nav.js', array( ), TRUE);
-	wp_enqueue_script( 'responsive-nav' );
-
-	// Masonry configuration	
-	/*wp_register_script( 'custom-masonry', get_stylesheet_directory_uri() . '/js/custom/custom-masonry.js', array( 'jquery' ), TRUE);
-    wp_enqueue_script( 'custom-masonry' );*/
-
-	// Custom jQuery Functions	
-	wp_register_script( 'custom-functions', get_stylesheet_directory_uri() . '/js/custom/functions.js', array( 'jquery' ), TRUE);
-    wp_enqueue_script( 'custom-functions' );
-	
-	?>
-
-		<!-- TypeKit -->
-		
-		<script type="text/javascript" src="http://use.typekit.com/zxe7tjh.js"></script>
-	
-	<?php
-
+	if ( wp_script_is( 'mbdround-typekit', 'done' ) ) { 
+		echo '<script type="text/javascript">try{Typekit.load();}catch(e){}</script>'; 
+	}
 }
 
-function theround_register_custom_post_types () {
+	// Typekit Webfonts Inline Script
+	add_action( 'wp_head', 'mbdtheround78_typekit_inline' );
 
-	// Resources
-	
- 	$labels = array(
-	
-		'name' => _x('Resources', 'post type general name'),
-		'singular_name' => _x('Resource', 'post type singular name'),
-		'add_new' => _x('Add New', 'Resource'),
-		'add_new_item' => __('Add New Resource'),
-		'edit_item' => __('Edit Resource'),
-		'new_item' => __('New Resource'),
-		'view_item' => __('View Resource '),
-		'search_items' => __('Search Resources'),
-		'not_found' =>  __('Nothing found'),
-		'not_found_in_trash' => __('Nothing found in Trash')
-		
-	);
-	
-	$args = array(
-		'labels' => $labels,
-		'public' => true, 
-		'hierarchical' => false, 
-		'menu_position' => 5, 
-		'has_archive' => 'resources', 
-		'supports' => array(
-			'title',
-			'editor',
-			'comments',
-			'thumbnail',
-			'custom-fields'
-			),
-	
-	);
-	
-	register_post_type( 'resource', $args ); 
-	
-	// Labs
-	
-	$labels = array( 
-	
-		'name' => _x('Labs', 'post type general name'),
-		'singular_name' => _x('Labs', 'post type singular name'),
-		'add_new' => _x('Add New', 'Labs'),
-		'add_new_item' => __('Add New Labs'),
-		'edit_item' => __('Edit Labs'),
-		'new_item' => __('New Labs'),
-		'view_item' => __('View Labs '),
-		'search_items' => __('Search Labs'),
-		'not_found' =>  __('Nothing found'),
-		'not_found_in_trash' => __('Nothing found in Trash')
-	);
-	
-	$args = array(
-		'labels' => $labels, 
-		'public' => true, 
-		'hierarchical' => false, 
-		'menu_position' => 7, 
-		'has_archive' => 'labs', 
-		'supports' => array(
-			'title',
-			'editor',
-			'comments',
-			'thumbnail',
-			'custom-fields'
-		),
-	);
-	
-	register_post_type( 'labs', $args );
 
-	// Creatives 
-	
-	$labels = array( 
-	
-		'name' => _x('Creatives', 'post type general name'),
-		'singular_name' => _x('Creatives', 'post type singular name'),
-		'add_new' => _x('Add New', 'Creatives'),
-		'add_new_item' => __('Add New Creatives'),
-		'edit_item' => __('Edit Creatives'),
-		'new_item' => __('New Creatives'),
-		'view_item' => __('View Creatives '),
-		'search_items' => __('Search Creatives'),
-		'not_found' =>  __('Nothing found'),
-		'not_found_in_trash' => __('Nothing found in Trash')
-	);
-	
-	$args = array(
-		'labels' => $labels, 
-		'public' => true, 
-		'hierarchical' => false, 
-		'menu_position' => 8,
-		'has_archive' => 'creatives', 
-		'supports' => array(
-			'title',
-			'editor',
-			'thumbnail',
-			'custom-fields',
-			'revisions',
-			'excerpt'
-		),
-	);
-	
-	register_post_type( 'creatives', $args );
-		
-}
 
 // Styling for the custom post type icons
 
@@ -300,13 +147,6 @@ function theround_creatives_icons() {
 <?php }
 
 
-function theround_show_template () {
-	
-	global $template;
-	
-	print_r($template);
-	
-}
 
 function theround_header_height ($size) {
    
@@ -392,12 +232,58 @@ function theround_custom_footer_admin () {
 
 }  
   
-function theround_custom_post_feed_request($qv) {
 
-	if (isset($qv['feed']))
-		$qv['post_type'] = get_post_types();
-	return $qv;
-	
+if ( ! function_exists( 'theround_posted_on' ) ) :
+/**
+ * Prints HTML with meta information for the current post-date/time and author.
+ */
+function theround_posted_on() {
+	$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
+	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
+		$time_string .= '<time class="updated" datetime="%3$s">%4$s</time>';
+	}
+
+	$time_string = sprintf( $time_string,
+		esc_attr( get_the_date( 'c' ) ),
+		esc_html( get_the_date() ),
+		esc_attr( get_the_modified_date( 'c' ) ),
+		esc_html( get_the_modified_date() )
+	);
+
+	printf( __( '<span class="posted-on">Posted on %1$s</span><span class="byline"> by %2$s</span>', '_mbbasetheme' ),
+		sprintf( '<a href="%1$s" rel="bookmark">%2$s</a>',
+			esc_url( get_permalink() ),
+			$time_string
+		),
+		sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s">%2$s</a></span>',
+			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+			esc_html( get_the_author() )
+		)
+	);
 }
+endif;
 
-?>
+//	Post meta ( Categories/Tags/etc. )
+
+function theround_post_meta() {
+
+	$categories_list = get_the_category_list( __( ', ', 'mbdmaster' ) );
+	$tag_list = get_the_tag_list( '', __( ', ', 'mbdmaster' ) );
+
+	if ( $categories_list || $tag_list ) {
+		echo '<div class="post-meta">';
+	}
+
+		if ( $categories_list ) {
+			echo '<div class="categories-links"><h4>Categories</h4> ' . $categories_list . '</div>';
+		}
+
+		if ( $tag_list ) {
+			echo '<div class="tags-links"><h4>Tags</h4> ' . $tag_list . '</div>';
+		}
+	
+	if ( $categories_list || $tag_list ) {
+		echo '</div>';
+	}
+
+}
