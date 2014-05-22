@@ -9,7 +9,7 @@
 
 get_header(); ?>
 
-		<div id="container">
+		<div id="primary">
 			<div id="content" role="main">
 			<?php get_template_part( 'loop', 'resource' ); ?>
 			</div><!-- #content -->
