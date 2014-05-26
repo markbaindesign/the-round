@@ -4,7 +4,7 @@ Theme URI:      		http://markbaindesign.com
 Description:    		Hand-crafted for the round.
 Author:         		Mark Bain
 Author URI:     		http://markbaindesign.com
-Version:        		2.4.3.4
+Version:        		2.4.3.9
 */
 /* ==========================================================================
    Mixins
@@ -215,6 +215,7 @@ figure {
  */
 hr {
   -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
   box-sizing: content-box;
   height: 0;
 }
@@ -331,6 +332,7 @@ input {
  */
 input[type="checkbox"],
 input[type="radio"] {
+  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   /* 1 */
@@ -357,6 +359,7 @@ input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
   -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
   /* 2 */
   box-sizing: content-box;
 }
@@ -513,10 +516,6 @@ div.menu ul {
 
 .menu-header-container {
   height: 66px;
-}
-
-ul#menu-header {
-  list-style: none;
 }
 
 /* ------------------------------------------ 
@@ -762,49 +761,6 @@ p.resource-author {
   text-decoration: none;
   background-color: #000;
   color: #fff;
-}
-
-/* Mobile Device Menu */
-#hidden-test-menu {
-  display: none;
-}
-
-ul#menu-header {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  color: #fff;
-  background-color: transparent;
-  height: 76px;
-  float: right;
-}
-
-ul#menu-header li {
-  border-left: 1px solid #ccc;
-  display: inline-block;
-  float: left;
-  text-align: right;
-  height: 76px;
-}
-
-ul#menu-header li a {
-  margin: 0;
-  padding: 7px 7px 0 0;
-  text-decoration: none;
-  height: 80px;
-  width: 80px;
-  display: block;
-  -webkit-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  transform: rotate(-90deg);
-}
-
-ul#menu-header li:hover {
-  border-left: 1px solid #333;
-}
-
-ul#ie-menu li a {
-  padding-top: 10px;
 }
 
 /*---- testimonials --*/
@@ -1526,16 +1482,7 @@ li#title {
 =====================================================
 */
 @media only screen and (max-width: 540px), only screen and (max-device-width: 540px) {
-  .menu-header-container {
-    height: auto;
-  }
-
-  ul#menu-header li.current-menu-item {
-    background: rgba(0, 0, 0, 0.2);
-    border: none;
-  }
-
-  ul#menu-header li
+  /* iPhone Lists */
   #main .widget-area ul {
     padding: 0;
   }
@@ -1567,10 +1514,6 @@ li#title {
   #branding,
   #main {
     margin: 17px auto;
-    width: 100%;
-  }
-
-  .navigation {
     width: 100%;
   }
 
@@ -1686,12 +1629,6 @@ li#title {
   img#wpstats {
     display: block;
     margin: 0 auto 10px;
-  }
-
-  ul#menu-header {
-    width: 100%;
-    float: none;
-    list-style: none;
   }
 
   #hidden-test-menu {
@@ -1934,6 +1871,12 @@ li#title {
   width: 150px;
   height: 138px;
 }
+@media (max-width: 43.75em) {
+  #site-title {
+    width: 21.5%;
+    height: auto;
+  }
+}
 @media (max-width: 37.5em) {
   #site-title {
     height: 29px;
@@ -2053,6 +1996,7 @@ img.attachment-creatives-image:active {
   border: 1px solid #ccc;
 }
 .latest-titles div a img:hover {
+  -webkit-box-shadow: 4px 6px 10px #DDD;
   box-shadow: 4px 6px 10px #DDD;
 }
 .latest-titles div:last-of-type {
@@ -2481,6 +2425,14 @@ div.wpcf7-validation-errors {
 }
 
 /* Main Nav */
+@media (max-width: 37.5em) {
+  ul#menu-header {
+    width: 100%;
+    float: none;
+    list-style: none;
+  }
+}
+
 .nav-collapse {
   right: 0;
   top: 0;
@@ -2521,6 +2473,7 @@ nav[role="navigation"] ul {
 
 @media (max-width: 37.5em) {
   .js .nav-collapse {
+    width: 100%;
     clip: rect(0 0 0 0);
     max-height: 0;
     position: absolute;
@@ -2531,10 +2484,31 @@ nav[role="navigation"] ul {
 }
 
 ul#menu-header {
+  list-style: none;
   height: auto;
+  float: right;
+  padding: 0;
+}
+ul#menu-header li {
+  border-left: 1px solid #CCC;
+  text-align: left;
+  height: 100px;
+  width: 55px;
+  line-height: 1;
+  position: relative;
+  display: inline-block;
+}
+ul#menu-header li:hover {
+  border-left: 1px solid #333;
+}
+@media (max-width: 43.75em) {
+  ul#menu-header li {
+    width: 35px;
+  }
 }
 @media (max-width: 37.5em) {
   ul#menu-header li {
+    width: 100%;
     height: auto;
     float: none;
     display: block;
@@ -2542,6 +2516,10 @@ ul#menu-header {
     text-align: center;
     background: rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  ul#menu-header li.current-menu-item {
+    background: rgba(0, 0, 0, 0.2);
+    border: none;
   }
   ul#menu-header li:hover {
     border-left: none;
@@ -2554,17 +2532,24 @@ ul#menu-header {
 }
 ul#menu-header li a {
   display: block;
-  float: left;
-  text-align: right;
-  font-size: 1.1em;
-  overflow: hidden;
-  height: 55px;
-  /* Same as width */
-  width: 55px;
-  /* Same as height */
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 5px;
+  text-decoration: none;
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+ul#menu-header li a:hover {
+  color: #333;
 }
 @media (max-width: 37.5em) {
   ul#menu-header li a {
+    position: relative;
     -webkit-transform: none;
     -ms-transform: none;
     transform: none;
@@ -2620,7 +2605,11 @@ ul#menu-header li a {
   color: #777;
   font-size: 12px;
   line-height: 18px;
-  overflow: hidden;
+}
+@media (max-width: 37.5em) {
+  .navigation {
+    width: 100%;
+  }
 }
 .navigation a:link, .navigation a:visited {
   color: #777;
@@ -2666,7 +2655,7 @@ ul#menu-header li a {
   border: 1px dashed red;
 }
 
-/* * { border:1px dashed red !important; } */
+/* * { border:1px dashed pink !important; } */
 /*
 * Hide only visually, but have it available for screenreaders: h5bp.com/v
 */
@@ -2707,6 +2696,7 @@ ul#menu-header li a {
 *:after {
   /* apply a natural box layout model to all elements */
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
