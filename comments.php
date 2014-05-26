@@ -45,7 +45,7 @@ if ( post_password_required() ) {
 					'short_ping' 	=> true,
 					'callback'      => 'mbdmaster_custom_comment', // Custom comment function
 					'avatar_size'	=> 66,
-					'per_page'	=> 10
+					// 'per_page'	=> 10
 				), $comments )
 			?>
 		</ol><!-- .comment-list -->
