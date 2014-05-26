@@ -32,6 +32,11 @@
 	width: 150px;
 	height: 138px;
 
+	@include bp(menu-break) {
+		width: 21.5%;
+		height: auto;
+	}
+
 	@include bp(small) {
 		height: 29px;
 	}
