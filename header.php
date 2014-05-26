@@ -24,7 +24,8 @@
 			
 	?>
 </title>
-<meta name="viewport" content="width=device-width" />
+<meta name="viewport" content="width=device-width, initial-scale=1" >
+
 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
