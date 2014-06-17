@@ -95,7 +95,8 @@
 				get_post_meta($post->ID, 'amazon-br', true)||
 				get_post_meta($post->ID, 'amazon-de', true)||
 				get_post_meta($post->ID, 'smashwords-epub', true)||
-				get_post_meta($post->ID, 'smashwords-multiple', true)
+				get_post_meta($post->ID, 'smashwords-multiple', true)||
+				get_post_meta($post->ID, 'gumroad', true)				
 				)   { ?>
 
 				<div id="purchase-links">
@@ -178,7 +179,15 @@
 								</a>
 							</li>
 						<?php } ?>
-					</ul>
+						<!-- Gumroad Link -->
+						<?php if(get_post_meta($post->ID, 'gumroad', true)) { ?>
+							<li>
+								<a href="<?php echo get_post_meta($post->ID, 'gumroad', true); ?>">
+									Gumroad
+								</a>
+							</li>
+						<?php } ?>
+						</ul>
 				</div>
 	
 				
