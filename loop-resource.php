@@ -194,11 +194,25 @@
 				<?php } else { ?>Coming soon!
 				<?php } ?>
 		</div>
+
+<?php 
+				if( 
+				get_post_meta($post->ID, 'amazon-us', true)|| 
+				get_post_meta($post->ID, 'amazon-uk', true)||
+				get_post_meta($post->ID, 'amazon-es', true)||
+				get_post_meta($post->ID, 'amazon-fr', true)||
+				get_post_meta($post->ID, 'amazon-jp', true)|| 
+				get_post_meta($post->ID, 'amazon-br', true)||
+				get_post_meta($post->ID, 'amazon-de', true)
+
+				)   { 
+?>
 		<ul>
 			<li><?php the_title(); ?><em> is now available at Amazon in Kindle format.</em></li>
 			<li><em>To read </em><?php the_title(); ?><em> you need a Kindle, PC, Mac, Android device or iPhone/iPad.</em></li>
 			<li><em>If you want to read the book on a device other than a kindle then you can <a href="http://www.amazon.com/gp/feature.html?ie=UTF8&amp;docId=1000493771">download a free Kindle reader here</a>.</em></li>
 		</ul>
+				<?php } ?>
 	</div>
 	<div class="spacer">
 
