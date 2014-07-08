@@ -1,0 +1,20 @@
+.header-banner {
+	@include clearfix;
+	display: none;
+	background: url(assets/images/summer-bg.png) no-repeat 0 100% $banner-bg;
+	background-size: cover;
+	margin-bottom: 2em;
+
+	h1 {
+		color: white;
+		text-shadow: none;
+		font-size: 3em;
+		text-align: center;
+	}
+
+	img {
+		width: 33.3333%;
+		float: left;
+	}
+
+}
