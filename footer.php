@@ -1,4 +1,4 @@
-
+</main>
 	<div id="footer" role="contentinfo">
 			
 		<div id="colophon">
