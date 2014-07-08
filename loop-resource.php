@@ -49,7 +49,7 @@
 							<?php } ?>
 							
 							<?php if(get_post_meta($post->ID, 'price-dollars', true)) { ?>
-								<li>&dollar;<?php echo get_post_meta($post->ID, 'price-dollars', true); ?></li>
+								<li>&#36;<?php echo get_post_meta($post->ID, 'price-dollars', true); ?></li>
 							<?php } ?>
 							
 							<?php if(get_post_meta($post->ID, 'price-yen', true)) { ?>
@@ -59,14 +59,12 @@
 						</ul>
 						<span style="font-size: 12px;padding-top: 5px;">These prices can change depending on your location</span>
 					</div>
-				<?php } else { ?>
-					<div id="prices">
-						Prices coming soon!
-					</div>
-				<?php } ?>
 					<div id="purchase-link">
 						<a href="#purchase-options">Go to purchase options&nbsp;&darr;</a>
 					</div>
+
+
+				<?php } ?>
 
 
 		</div>
@@ -77,8 +75,7 @@
 			<?php the_content(); ?>
 		</div>
 
-		<div id="purchase-options">
-			<h2><a name="purchase-options">Purchase options for <em><?php the_title(); ?></em></a></h2>
+	
 			
 			<?php 	
 				// Notes
@@ -86,7 +83,8 @@
 					// && means AND - both conditions must apply
 					// || means OR: only one condition needs to apply
 			?>
-			<?php if( 
+<?php if( 
+
 				get_post_meta($post->ID, 'amazon-us', true)|| 
 				get_post_meta($post->ID, 'amazon-uk', true)||
 				get_post_meta($post->ID, 'amazon-es', true)||
@@ -98,7 +96,8 @@
 				get_post_meta($post->ID, 'smashwords-multiple', true)||
 				get_post_meta($post->ID, 'gumroad', true)				
 				)   { ?>
-
+	<div id="purchase-options">
+			<h2><a name="purchase-options">Purchase options for <em><?php the_title(); ?></em></a></h2>
 				<div id="purchase-links">
 					<ul>
 						
@@ -190,11 +189,7 @@
 						</ul>
 				</div>
 	
-				
-				<?php } else { ?>Coming soon!
-				<?php } ?>
-		</div>
-
+					</div>
 <?php 
 				if( 
 				get_post_meta($post->ID, 'amazon-us', true)|| 
@@ -213,6 +208,10 @@
 			<li><em>If you want to read the book on a device other than a kindle then you can <a href="http://www.amazon.com/gp/feature.html?ie=UTF8&amp;docId=1000493771">download a free Kindle reader here</a>.</em></li>
 		</ul>
 				<?php } ?>
+				<?php } ?>
+	
+
+
 	</div>
 	<div class="spacer">
 
