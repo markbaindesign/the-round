@@ -41,7 +41,16 @@
 
 <div id="fb-root"></div>
 
-<div id="wrapper" class="hfeed">
+<div class="header-banner section">
+	<div class="container">
+		<h1>Pick up some summer reading, at the round!</h1>
+		<a href="http://the-round.com/?p=1502"><img src="http://the-round.com/wp-content/uploads/2014/07/1.png" title="A Community of Readers"></a>
+		<a href="http://the-round.com/?p=1504"><img src="http://the-round.com/wp-content/uploads/2014/07/3.png" title="Adaptive Learning"></a>
+		<a href="http://the-round.com/?p=1499"><img src="http://the-round.com/wp-content/uploads/2014/07/2.png" title="Making and Using Machinima in the Language Classroom"></a>
+	</div><!-- .container -->
+</div><!-- .header-banner -->
+
+<div id="wrapper" class="hfeed clearfix">
 
 	<div id="header" class="clearfix">
 		
@@ -74,3 +83,4 @@
 			
 
 	</div><!-- #header -->
+<main>
