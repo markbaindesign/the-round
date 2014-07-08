@@ -4,7 +4,7 @@ Theme URI:      		http://markbaindesign.com
 Description:    		Hand-crafted for the round.
 Author:         		Mark Bain
 Author URI:     		http://markbaindesign.com
-Version:        		2.4.5
+Version:        		2.5.1
 */
 
 @import "partials/mixins";
@@ -30,6 +30,8 @@ Version:        		2.4.5
 
 // Modules
 @import "partials/modules/social-media-module";
+@import "partials/modules/forms";
+@import "partials/modules/banner";
 
 // WordPress Global
 @import "partials/wp/wp";
