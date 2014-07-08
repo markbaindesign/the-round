@@ -1,4 +1,5 @@
 #wrapper {
+	@include clearfix;
 	width: 100%;
 	max-width: 980px;
   margin:17px auto;
@@ -42,4 +43,15 @@
 	padding: 0;
 	border-top: 2px solid #EEE;
 	border-bottom: 1px solid #ccc;
+}
+
+main {
+	@include clearfix;
+}
+
+.container {
+	width: 100%;
+	max-width: 980px;
+	margin: 0 auto;
+	padding: 0 2%;
 }
