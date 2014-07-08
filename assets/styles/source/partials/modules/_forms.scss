@@ -1,0 +1,25 @@
+form {
+
+	&#searchform {
+
+		label {
+				display: table-cell;		
+		}
+
+		input {
+			margin-bottom: 1em;
+
+			&[type=text] {
+				display: table-cell;
+				width: 100%;
+				padding-right: 10px;
+			}
+			
+	
+			&[type=submit] {
+				display: table-cell;
+				width: auto;
+			}
+		}
+	}
+}
