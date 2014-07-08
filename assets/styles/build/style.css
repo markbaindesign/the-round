@@ -4,7 +4,7 @@ Theme URI:      		http://markbaindesign.com
 Description:    		Hand-crafted for the round.
 Author:         		Mark Bain
 Author URI:     		http://markbaindesign.com
-Version:        		2.4.5
+Version:        		2.5.1
 */
 /* ==========================================================================
    Mixins
@@ -1795,6 +1795,15 @@ li#title {
   margin: 17px auto;
   padding: 0 2%;
 }
+#wrapper:before, #wrapper:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+#wrapper:after {
+  clear: both;
+}
 @media (max-width: 37.5em) {
   #wrapper {
     padding: 0;
@@ -1839,6 +1848,23 @@ li#title {
   padding: 0;
   border-top: 2px solid #EEE;
   border-bottom: 1px solid #ccc;
+}
+
+main:before, main:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+main:after {
+  clear: both;
+}
+
+.container {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 2%;
 }
 
 /* Header */
@@ -1979,6 +2005,9 @@ img.attachment-creatives-image:active {
 .home .readmore {
   margin-top: 10px;
   float: right;
+}
+.home .header-banner {
+  display: block;
 }
 
 .latest-titles div {
@@ -2182,6 +2211,48 @@ code {
 #social-mobile a:hover, #social-mobile a:active {
   -moz-opacity: 0.60;
   opacity: 0.60;
+}
+
+form#searchform label {
+  display: table-cell;
+}
+form#searchform input {
+  margin-bottom: 1em;
+}
+form#searchform input[type=text] {
+  display: table-cell;
+  width: 100%;
+  padding-right: 10px;
+}
+form#searchform input[type=submit] {
+  display: table-cell;
+  width: auto;
+}
+
+.header-banner {
+  display: none;
+  background: url(assets/images/summer-bg.png) no-repeat 0 100% white;
+  background-size: cover;
+  margin-bottom: 2em;
+}
+.header-banner:before, .header-banner:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+.header-banner:after {
+  clear: both;
+}
+.header-banner h1 {
+  color: white;
+  text-shadow: none;
+  font-size: 3em;
+  text-align: center;
+}
+.header-banner img {
+  width: 33.3333%;
+  float: left;
 }
 
 /* -------------------------------------------------------------- 
