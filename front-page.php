@@ -2,11 +2,10 @@
 <div id="primary">
 	<div id="content" role="main">			
 		<div class="hero clearfix">
-					<h1><?php bloginfo( 'description' ); ?><h1>
-			</div><!-- .hero -->
-		<div class="latest-titles clearfix">
-			<?php get_template_part( 'content', 'latest-titles' ); ?>
-		</div><!-- .latest-titles -->
+		<?php while ( have_posts() ) : the_post(); ?>			
+			<?php the_content(); ?>			
+		<?php endwhile; ?>
+		</div><!-- .hero -->
 		<div class="latest-blog-posts  clearfix">
 			<?php get_template_part( 'content', 'latest-blog-posts' ); ?>
 		</div><!-- .latest-blog-posts -->		
