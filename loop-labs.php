@@ -2,9 +2,9 @@
 
 <?php if ( have_posts() ) : ?>
 	<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-<div class="post_home"><!----- wordpress class - leave it be ----->
+<div class="post_home"><!-- wordpress class - leave it be -->
 	<div id="nav-above" class="navigation">
-		<div class="next-post">
+		<div class="next-post"
 			<?php next_post('% &rarr; ', '', 'yes'); ?>
 		</div>
 		<div class="previous-post">
@@ -21,10 +21,14 @@
 			<div id="title-block" >
 				<h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
 						<p class="resource-author">
-							By <a href="<?php bloginfo('url'); ?>/creatives/<?php echo get_post_meta($post->ID, 'creative-slug', true); ?>"><?php echo get_post_meta($post->ID, 'creative', true); ?></a>
+							<a href="<?php bloginfo('url'); ?>/creatives/<?php echo get_post_meta($post->ID, 'creative-slug', true); ?>"><?php echo get_post_meta($post->ID, 'creative', true); ?></a>
 							
 							<?php if ( get_post_meta($post->ID, 'creative2', true)) {?>
-								& <a href="<?php bloginfo('url'); ?>/creatives/<?php echo get_post_meta($post->ID, 'creative2-slug', true); ?>"><?php echo get_post_meta($post->ID, 'creative2', true); ?></a>
+								| <a href="<?php bloginfo('url'); ?>/creatives/<?php echo get_post_meta($post->ID, 'creative2-slug', true); ?>"><?php echo get_post_meta($post->ID, 'creative2', true); ?></a>
+							<?php } ?>
+
+							<?php if ( get_post_meta($post->ID, 'creative3', true)) {?>
+								| <a href="<?php bloginfo('url'); ?>/creatives/<?php echo get_post_meta($post->ID, 'creative3-slug', true); ?>"><?php echo get_post_meta($post->ID, 'creative3', true); ?></a>
 							<?php } ?>
 						</p>
 			</div>
