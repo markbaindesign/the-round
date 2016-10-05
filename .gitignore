@@ -1,0 +1,10 @@
+.DS_Store
+node_modules
+bower_components
+.sass-cache
+*~
+*.swp
+style.css
+assets/js/*.min.js
+assets/js/*.min.map
+assets/styles/build
