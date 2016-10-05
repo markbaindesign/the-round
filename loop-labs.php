@@ -1,10 +1,8 @@
- 
-
 <?php if ( have_posts() ) : ?>
 	<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 <div class="post_home"><!-- wordpress class - leave it be -->
 	<div id="nav-above" class="navigation">
-		<div class="next-post"
+		<div class="next-post">
 			<?php next_post('% &rarr; ', '', 'yes'); ?>
 		</div>
 		<div class="previous-post">
@@ -55,5 +53,4 @@
 
 	
 	<?php comments_template( '', true ); ?>
-</div>
-
+</div><!-- .post_home -->
