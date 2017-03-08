@@ -1,0 +1,7 @@
+{
+  "theme_name":     	"the-round",
+  "theme_path":     	"httpdocs/wp-content/themes",
+  "plugin_name":    	"theround-custom",
+  "plugin_path":    	"httpdocs/wp-content/mu-plugins",
+  "mu_plugin_path":    	"httpdocs/wp-content/mu-plugins"
+}

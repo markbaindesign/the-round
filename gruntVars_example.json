@@ -1,0 +1,7 @@
+{
+  "theme_name":     	"my_theme",
+  "theme_path":     	"httpdocs/wp-content/themes",
+  "plugin_name":    	"my-custom-plugin",
+  "plugin_path":    	"httpdocs/wp-content/mu-plugins",
+  "mu_plugin_path":    	"httpdocs/wp-content/mu-plugins"
+}

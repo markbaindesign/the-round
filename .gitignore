@@ -1,10 +1,87 @@
-.DS_Store
+# =========================
+# Various
+# =========================
 node_modules
 bower_components
 .sass-cache
+import
+export
+scripts
+bin
+release
+*.yml
+*.orig
+httpdocs/wp-content/themes/criado-em-sampa-theme/assets/js/dist/custom/modernizr-custom.js
+
+# Grunt vars are specific to the local env
+gruntVars.json
+
+# =========================
+# VIM Temp Files
+# =========================
 *~
 *.swp
-style.css
-assets/js/*.min.js
-assets/js/*.min.map
-assets/styles/build
+
+# =========================
+# WordPress 
+# =========================
+
+*.log
+
+# Ignore everything in the "httpdocs" directory except the "wp-content" directory.
+httpdocs/*
+!httpdocs/wp-content/
+
+# Ignore everything in the "wp-content" directory, except the "plugins"
+# and "themes" directories.
+httpdocs/wp-content/*
+!httpdocs/wp-content/plugins/
+!httpdocs/wp-content/themes/
+!httpdocs/wp-content/mu-plugins/
+ 
+# Ignore everything in the "plugins" directory, except the plugins you
+# specify (see the commented-out examples for hints on how to do this.)
+httpdocs/wp-content/plugins/*
+
+# Ignore everything in the "mu-plugins" directory, except the mu-plugins you
+# specify (see the commented-out examples for hints on how to do this.)
+httpdocs/wp-content/mu-plugins/*
+!httpdocs/wp-content/mu-plugins/load.php
+!httpdocs/wp-content/mu-plugins/theround-custom.php
+ 
+# Ignore everything in the "themes" directory, except the themes you
+# specify (see the commented-out example for a hint on how to do this.)
+httpdocs/wp-content/themes/*
+!httpdocs/wp-content/themes/the-round/
+httpdocs/wp-content/themes/the-round/style.css
+
+# =========================
+# Operating System Files
+# =========================
+
+# Windows
+# =========================
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+*.map
+
+# Misc
+*.zip
+*.tar
+*.gz
+*.sql
+*.sublime-workspace

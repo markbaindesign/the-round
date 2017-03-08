@@ -1,65 +1,179 @@
 'use strict';
+
 module.exports = function(grunt) {
 
-    // load all grunt tasks matching the `grunt-*` pattern
+    // auto-load all grunt tasks matching the `grunt-*` pattern in package.json
+    // no need for grunt.loadNpmTasks!
     require('load-grunt-tasks')(grunt);
+    var mozjpeg = require('imagemin-mozjpeg');
 
     grunt.initConfig({
 
-        // watch for changes and trigger sass, jshint, uglify and livereload
-        watch: {
-            sass: {
-                files: ['assets/styles/source/**/*.{scss,sass}'],
-                tasks: ['sass', 'autoprefixer', 'cssmin']
-            },
-            js: {
-                files: '<%= jshint.all %>',
-                tasks: ['jshint', 'uglify']
-            },
-            livereload: {
-                options: { livereload: true },
-                files: [ '*.php', 'style.css', 'assets/js/*.js', 'assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}']
-            }
-        },
+        /**
+        *
+        * Variables
+        *
+        */
+			
+        // Variables from package.json
+        pkg: grunt.file.readJSON( 'package.json' ),
 
-        // sass
-        sass: {
-            dist: {
-                options: {
-                    sourcemap: true,
-                    style: 'expanded',
-                },
-                files: {
-                    'assets/styles/build/style.css': 'assets/styles/source/style.scss',
-                    'assets/styles/build/editor-style.css': 'assets/styles/source/editor-style.scss'
-                }
-            }
-        },
+        // Global variables
+        vars: grunt.file.readJSON( 'gruntVars.json' ),
+        
+        // README
+        rdm: 'README.md', 
+
+        /**
+        *
+        * Grunt plugin configuration
+        *
+        */
 
         // autoprefixer
         autoprefixer: {
             options: {
-                browsers: ['last 2 versions', 'ie 9', 'ios 6', 'android 4', 'android 3'],
+                browsers: ['last 2 versions', 'ie 9'],
                 map: true
             },
-            files: {
-                expand: true,
-                flatten: true,
-                src: 'assets/styles/build/*.css',
-                dest: 'assets/styles/build'
+            target_file: {
+               src: '<%= vars.theme_path %>/<%= vars.theme_name %>/style.css',
             },
         },
 
-        // css minify
-        cssmin: {
-            options: {
-                keepSpecialComments: 1
-            },
-            minify: {
+        // Increment the version number in package.json
+	  	bump: {
+			options: {
+  			    updateConfigs: ['pkg'], // make sure to check updated pkg variables
+  			    push: false,
+                commitFiles: ['-a'], // Commit all files
+                createTag: false, // Branch is tagged by git flow
+                commitMessage: 'Bump the version to %VERSION%',
+                prereleaseName: 'rc',
+			}
+		},
+
+        // Delete temporary files
+		clean: {
+            dir_release: ['release/**/*'], // Clean out the release dir
+            copy_theme: ['release/<%= pkg.name %>.<%= pkg.version %>/<%= vars.theme_name %>.<%= pkg.version %>'],
+			copy_plugin: ['release/<%= pkg.name %>.<%= pkg.version %>/<%= vars.plugin_name %>.<%= pkg.version %>']
+		},
+
+        // Create an archive
+		compress: {
+
+			plugin: {
+				options: {
+					mode: 'tgz',
+					archive: 'release/<%= pkg.name %>.<%= pkg.version %>/<%= vars.plugin_name %>.<%= pkg.version %>.tgz'
+				},
+				expand: true,
+				cwd: 'release/<%= pkg.name %>.<%= pkg.version %>/<%= vars.plugin_name %>.<%= pkg.version %>',
+				src: ['**/*']
+			},
+
+            theme: {
+                options: {
+                    mode: 'tgz',
+                    archive: 'release/<%= pkg.name %>.<%= pkg.version %>/<%= vars.theme_name %>.<%= pkg.version %>.tgz'
+                },
                 expand: true,
-                cwd: 'assets/styles/build',
-                src: ['*.css', '!*.min.css'],
-                ext: '.css'
+                cwd: 'release/<%= pkg.name %>.<%= pkg.version %>/<%= vars.theme_name %>.<%= pkg.version %>',
+                src: ['**/*']
+            },
+            theme_pot: {
+                options: {
+                    mode: 'zip',
+                    archive: 'release/<%= pkg.name %>.<%= pkg.version %>/_criadoemsampa.pot.<%= pkg.version %>.zip'
+                },
+                expand: true,
+                cwd: 'release/<%= pkg.name %>.<%= pkg.version %>/<%= vars.theme_name %>.<%= pkg.version %>/languages/',
+                src: ['*.pot']
+            },
+            plugin_pot: {
+                options: {
+                    mode: 'zip',
+                    archive: 'release/<%= pkg.name %>.<%= pkg.version %>/_criadoemsampa_plugin.pot.<%= pkg.version %>.zip'
+                },
+                expand: true,
+                cwd: 'release/<%= pkg.name %>.<%= pkg.version %>/<%= vars.plugin_name %>.<%= pkg.version %>/languages/',
+                src: ['*.pot']
+            },   		
+		},
+
+        copy: {
+
+            theme: {
+                files:  [ 
+                    {
+                        expand: true, // includes files within path and its sub-directories
+                        cwd: '<%= vars.theme_path %>/<%= vars.theme_name %>/', // Target dir
+                        src: [
+                            '**',
+                            '!style.css.map',
+                            '!**/*.*.orig' // Don't copy .orig copies
+                        ], 
+                        dest: 'release/<%= pkg.name %>.<%= pkg.version %>/<%= vars.theme_name %>.<%= pkg.version %>'
+                    },
+                ],
+            },
+
+            plugin: {
+                files:  [
+                    // includes files within path and its sub-directories
+                    {expand: true, 
+                    cwd: '<%= vars.plugin_path %>/<%= vars.plugin_name %>', // Target dir
+                    src: [
+                        '**',
+                        '!**/*.*.orig' // Don't copy .orig copies
+                    ], 
+                    dest: 'release/<%= pkg.name %>.<%= pkg.version %>/<%= vars.plugin_name %>.<%= pkg.version %>'},
+                    ],
+            },
+
+            mu_plugins: {
+                files:  [
+                    // includes files within path and its sub-directories
+                {expand: true, 
+                    cwd: 'httpdocs/wp-content/mu-plugins/',
+                    src: [
+                        '**',
+                    ], 
+                    dest: 'release/<%= pkg.name %>.<%= pkg.version %>/<%= vars.mu_plugin_path %>'},
+                    ],
+            },
+
+            font_awesome: {
+                 expand: true,
+                 flatten: true,
+                 src: ['bower_components/fontawesome/fonts/*'],
+                 dest: '<%= vars.theme_path %>/<%= vars.theme_name %>/assets/fonts'
+            },
+
+            deploy_scripts: {
+                 expand: true,
+                 flatten: true,
+                 src: ['node_modules/mbd-wp-deploy-scripts/scripts/*'],
+                 dest: 'scripts'
+            }
+        },
+
+        // Optimize images
+        imagemin: {
+            dist: {
+                options: {
+                    optimizationLevel: 7,
+                    progressive: true,
+                    interlaced: true,
+                    use: [mozjpeg()],
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= vars.theme_path %>/<%= vars.theme_name %>/assets/images/src',
+                    src: ['**/*.{png,jpg,jpeg,gif}'],
+                    dest: '<%= vars.theme_path %>/<%= vars.theme_name %>/assets/images/dist'
+                }]
             }
         },
 
@@ -71,88 +185,298 @@ module.exports = function(grunt) {
             },
             all: [
                 'Gruntfile.js',
-                'assets/js/source/**/*.js'
+                '<%= vars.theme_path %>/<%= vars.theme_name %>/assets/js/src/custom/**/*.js',
+                '<%= vars.plugin_path %>/<%= vars.plugin_name %>/assets/js/src/custom/**/*.js',
             ]
         },
 
-        // uglify to concat, minify, and make source maps
-        uglify: {
-            plugins: {
+        makepot: {
+            theme: {
                 options: {
-                    sourceMap: 'assets/js/plugins.js.map',
-                    sourceMappingURL: 'plugins.js.map',
-                    sourceMapPrefix: 2
-                },
-                files: {
-                    'assets/js/plugins.min.js': [
-                        'assets/js/source/plugins.js',
-                        'assets/js/vendor/responsive-nav.js',
-												'assets/js/vendor/imagesloaded.pkgd.min.js'
-                        // 'assets/js/vendor/skip-link-focus-fix.js',
-                        // 'assets/js/vendor/yourplugin/yourplugin.js',
-                    ]
+                    cwd: 'httpdocs/wp-content/themes/<%= vars.theme_name %>',
+                    exclude: ['httpdocs/wp-content/themes/<%= vars.theme_name %>/assets/'],
+                    type: 'wp-theme',
+                    processPot: function( pot ) {
+                        var translation,
+                            excluded_meta = [
+                                'Plugin Name of the plugin/theme',
+                                'Plugin URI of the plugin/theme',
+                                'Author of the plugin/theme',
+                                'Author URI of the plugin/theme'
+                            ];
+
+                        for ( translation in pot.translations[''] ) {
+                            if ( 'undefined' !== typeof pot.translations[''][ translation ].comments.extracted ) {
+                                if ( excluded_meta.indexOf( pot.translations[''][ translation ].comments.extracted ) >= 0 ) {
+                                    console.log( 'Excluded meta: ' + pot.translations[''][ translation ].comments.extracted );
+                                    delete pot.translations[''][ translation ];
+                                }
+                            }
+                        }
+
+                        return pot;
+                    },
+                    updatePoFiles: false  
                 }
             },
-            main: {
+            plugin: {
                 options: {
-                    sourceMap: 'assets/js/main.js.map',
-                    sourceMappingURL: 'main.js.map',
-                    sourceMapPrefix: 2
-                },
-                files: {
-                    'assets/js/main.min.js': [
-                        'assets/js/source/main.js'
-                    ]
+                    cwd: 'httpdocs/wp-content/plugins/<%= vars.plugin_name %>',
+                    type: 'wp-plugin',
+                    processPot: function( pot ) {
+                        var translation,
+                            excluded_meta = [
+                                'Plugin Name of the plugin/theme',
+                                'Plugin URI of the plugin/theme',
+                                'Author of the plugin/theme',
+                                'Author URI of the plugin/theme'
+                            ];
+
+                        for ( translation in pot.translations[''] ) {
+                            if ( 'undefined' !== typeof pot.translations[''][ translation ].comments.extracted ) {
+                                if ( excluded_meta.indexOf( pot.translations[''][ translation ].comments.extracted ) >= 0 ) {
+                                    console.log( 'Excluded meta: ' + pot.translations[''][ translation ].comments.extracted );
+                                    delete pot.translations[''][ translation ];
+                                }
+                            }
+                        }
+
+                        return pot;
+                    },
+                    updatePoFiles: false  
                 }
+            },
+        },
+
+        // Modernizr
+        modernizr: {
+            dist: {
+                // [REQUIRED] Path to the build you're using for development.
+                "devFile" : "bower_components/modernizr/modernizr.js",
+
+                // Path to save out the built file.
+                "outputFile" : "<%= vars.theme_path %>/<%= vars.theme_name %>/assets/js/dist/custom/modernizr-custom.js",
             }
         },
 
-        // image optimization
-        imagemin: {
+        // Sass
+        sass: {
             dist: {
                 options: {
-                    optimizationLevel: 7,
-                    progressive: true,
-                    interlaced: true
+                    style: 'expanded',
                 },
-                files: [{
-                    expand: true,
-                    cwd: 'assets/images/',
-                    src: ['**/*.{png,jpg,gif}'],
-                    dest: 'assets/images/'
-                }]
+                files: {
+                    '<%= vars.theme_path %>/<%= vars.theme_name %>/style.css': 'sass/styles.scss',
+                    '<%= vars.theme_path %>/<%= vars.theme_name %>/style-custom-login.css': 'sass/custom-login-styles.scss',
+                }
             }
         },
 
-        // deploy via rsync
-        deploy: {
-            options: {
-                src: "./",
-                args: ["--verbose"],
-                exclude: ['.git*', 'node_modules', '.sass-cache', 'Gruntfile.js', 'package.json', '.DS_Store', 'README.md', 'config.rb', '.jshintrc'],
-                recursive: true,
-                syncDestIgnoreExcl: true
+        // Shell
+        shell: {
+            exp: {
+                command: [
+                    'cd bin/scripts',
+                    './local-export.sh',
+                    'cd ../..'
+                ].join('&&')
             },
-            staging: {
-                 options: {
-                    dest: "~/path/to/theme",
-                    host: "user@host.com"
-                }
+            imp: {
+                command: [
+                    'cd bin/scripts',
+                    './local-import.sh',
+                    'cd ../..'
+                ].join('&&')
             },
-            production: {
+            import_production_db: {
+                command: '~/htdocs/criado-em-sampa/bin/wp-db-import',
+            },
+            project_stats: {
+                command: 'du -sh ~/htdocs/criado-em-sampa/httpdocs',
+            },
+            build_stats: {
+                command: 'du -sh ~/htdocs/criado-em-sampa/release',
+            }          
+        },
+
+        // Version
+        version: {
+            bower: {
                 options: {
-                    dest: "~/path/to/theme",
-                    host: "user@host.com"
-                }
+                   prefix: '"version"\\:\\s"'
+                },
+                src: [ 'bower.json' ],
+            },
+            css: {
+                options: {
+                   prefix: 'Version\\:\\s'
+                },
+                src: [ 
+                    'sass/styles.scss',
+
+                    // Edit the version directly in the generated CSS file.
+                    // Avoids having to run the Sass task just for this. 
+                    '<%= vars.theme_path %>/<%= vars.theme_name %>/style.css', 
+                ],
+            },
+            theme: {
+                options: {
+                   prefix: 'Version\\:\\s'
+                },
+                src: [ 
+                    '<%= vars.theme_path %>/<%= vars.theme_name %>/theme-version.php',
+                ],
+            },
+            readme: {
+                options: {
+                    prefix: 'Version\ \s*'
+                },
+                src: [ '<%= rdm %>' ],
+            },
+            plugin: {
+                options: {
+                prefix: 'Version\\:\\s'
+                },
+                src: [ '<%= vars.plugin_path %>/<%= vars.plugin_name %>/<%= vars.plugin_name %>.php' ],
+           },           
+        },
+
+        // watch for changes and trigger sass, jshint, uglify and livereload
+        watch: {
+            sass: {
+                files: ['sass/**/*.{scss,sass}'],
+                tasks: [
+                        'sass', 
+                        'autoprefixer',
+                        'shell:project_stats'
+                    ]
+            },
+            js: {
+                files: '<%= jshint.all %>',
+                tasks: [
+                    'jshint',
+                    'shell:project_stats'
+                ]
+            },
+            img: {
+                files: ['<%= vars.theme_path %>/<%= vars.theme_name %>/assets/images/src/*.{png,jpg,jpeg,gif,webp,svg}'],
+                tasks: [
+                    'newer:imagemin:dist',
+                    'shell:project_stats'
+                ]
+            },
+            livereload: {
+                options: { livereload: true },
+                files: [
+
+                    // Gruntfile
+                    'Gruntfile.js',
+
+                    // Theme files
+                    '<%= vars.theme_path %>/<%= vars.theme_name %>/**/*.php', 
+                    '<%= vars.theme_path %>/<%= vars.theme_name %>/lib/**/*.php',
+                    '<%= vars.theme_path %>/<%= vars.theme_name %>/style.css', 
+                    '<%= vars.theme_path %>/<%= vars.theme_name %>/assets/js/src/**/*.js', 
+                    '<%= vars.theme_path %>/<%= vars.theme_name %>/assets/images/dist/**/*.{png,jpg,jpeg,gif,webp,svg}',
+
+                    // Plugin files
+                    '<%= vars.plugin_path %>/<%= vars.plugin_name %>/**/*',
+
+                ]
             }
         }
 
     });
 
-    // rename tasks
-    grunt.renameTask('rsync', 'deploy');
+    /**
+    *
+    * Register tasks
+    *
+    */
 
-    // register task
-    grunt.registerTask('default', ['sass', 'autoprefixer', 'cssmin', 'uglify', 'watch']);
+    grunt.registerTask('default', [
+		'sass',
+        'imagemin:dist',
+        'autoprefixer', 
+		'modernizr',
+        // 'jshint',        
+        'shell:project_stats',		
+		'watch',
+	]);
+
+    grunt.registerTask( 'bump-minor', [
+        'bump-only:minor',
+        'version', 
+        'bump-commit',        
+    ]);
+
+    grunt.registerTask( 'bump-patch', [
+        'bump-only:patch',
+        'version', 
+        'bump-commit',        
+    ]);
+
+    // Build Task
+    grunt.registerTask('build', [
+
+        // Start with a clean release dir
+        // If required, legacy releases can be rebuild based on their git tag
+        // and running this task
+
+        'clean:dir_release', 
+
+        // NOTE
+        // This task does not automatically bump the version
+        // Precede with grunt bump-{minor|patch} to change the version across the project
+
+        // Compile styles
+        // Do this because if you haven't run grunt after switching to this branch, 
+        // the CSS won't have been updated!
+        'sass',
+
+        // Make a copy of files for upload to the server
+
+        /***
+         *
+         * We copy the dirs first so we can add the version to the zipped dir and
+         * remove some files we don't want.
+         *
+         */
+
+        'copy:theme',
+        'copy:plugin',
+
+        // Create an archive from the copies
+        'compress',
+
+        // Show the archive sizes
+        'shell:build_stats', 
+
+        // Delete the uncompressed copies
+        'clean:copy_plugin', 
+        'clean:copy_theme', 
+
+    ]);
+	
+	// Copy assets 
+	grunt.registerTask('copyassets', [
+		'copy:font_awesome',
+        'copy:deploy_scripts'       
+	]);	
+
+    // Export entire WP site for deployment
+    grunt.registerTask('export', [
+        'shell:exp'
+    ]); 
+
+    // Import entire WP site for local development
+    grunt.registerTask('import', [
+        'shell:imp'
+    ]); 
+
+    // Import production DB for local development
+    grunt.registerTask('import-db', [
+        'shell:import_production_db'
+    ]); 
 
 };
