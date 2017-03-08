@@ -266,8 +266,8 @@ module.exports = function(grunt) {
                     style: 'expanded',
                 },
                 files: {
-                    '<%= vars.theme_path %>/<%= vars.theme_name %>/style.css': 'sass/styles.scss',
-                    '<%= vars.theme_path %>/<%= vars.theme_name %>/style-custom-login.css': 'sass/custom-login-styles.scss',
+                    '/home/mark/htdocs/the-round/httpdocs/wp-content/themes/the-round/style.css': '/home/mark/htdocs/the-round/sass/styles.scss',
+                    // '<%= vars.theme_path %>/<%= vars.theme_name %>/style-custom-login.css': 'sass/custom-login-styles.scss',
                 }
             }
         },
@@ -289,14 +289,17 @@ module.exports = function(grunt) {
                 ].join('&&')
             },
             import_production_db: {
-                command: '~/htdocs/criado-em-sampa/bin/wp-db-import',
+                command: '~/htdocs/the-round/bin/wp-db-import',
             },
             project_stats: {
-                command: 'du -sh ~/htdocs/criado-em-sampa/httpdocs',
+                command: 'du -sh ~/htdocs/the-round/httpdocs',
             },
             build_stats: {
-                command: 'du -sh ~/htdocs/criado-em-sampa/release',
-            }          
+                command: 'du -sh ~/htdocs/the-round/release',
+            },
+            fixperms: {
+                command: 'cd ~/htdocs/the-round/bin && ./wp-perms-local',
+            }            
         },
 
         // Version
@@ -354,7 +357,7 @@ module.exports = function(grunt) {
             js: {
                 files: '<%= jshint.all %>',
                 tasks: [
-                    'jshint',
+                    // 'jshint',
                     'shell:project_stats'
                 ]
             },
@@ -395,7 +398,7 @@ module.exports = function(grunt) {
     */
 
     grunt.registerTask('default', [
-		// 'sass',
+		'sass',
         // 'imagemin:dist',
         'autoprefixer', 
 		'modernizr',
@@ -416,6 +419,10 @@ module.exports = function(grunt) {
         'bump-commit',        
     ]);
 
+    grunt.registerTask( 'fixperms', [
+        'shell:fixperms'   
+    ]);
+
     // Build Task
     grunt.registerTask('build', [
 
@@ -432,7 +439,7 @@ module.exports = function(grunt) {
         // Compile styles
         // Do this because if you haven't run grunt after switching to this branch, 
         // the CSS won't have been updated!
-        // 'sass',
+        'sass',
 
         // Make a copy of files for upload to the server
 

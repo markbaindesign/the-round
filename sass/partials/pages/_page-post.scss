@@ -1,0 +1,68 @@
+/* Archive pages */
+
+.archive-item {
+	
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 1em;
+	margin-bottom: 1em;
+
+	p {
+		width: 81%;
+		float: left;
+		@include bp(small) {
+			display: none; /* Hide the excerpt */
+		}
+	}	
+	
+	h3 {
+		margin: 0;
+		padding: 0;
+		float: left;
+	}
+
+	img {
+		width: 100%;
+		height: auto;
+		float: left;
+
+	}
+
+	a.image {
+		display: block;
+		float: left;
+		width: 16%;
+		margin-right: 3%;
+	}
+
+}
+
+/* Creatives Images */
+
+.creatives {
+	
+
+	.creative-featured-image {
+	width: 20%;
+	margin-right: 20px;
+	float: left;
+
+}
+}
+
+img.attachment-creatives-image {
+	// Badly-named, I know.
+	// To do: rename it to something like "foobar"
+	width: 100%; // Means it needs to go in a container, usually just a <a> element.
+	padding: 3%;
+	height: auto;
+	border: 1px solid #CCC;
+	border-radius: 50%;
+
+	&:hover {
+		opacity: .9;
+		border: 1px solid #bbb;
+	}
+	&:active {
+		opacity: .8;
+		border: 1px solid #aaa;
+	}}
