@@ -1,26 +1,36 @@
-# The Round WordPress theme 
+# The Round
 
-Version: 2.6.1
+## By Bain Design
 
-## Author:
+### Version 2.6.1
 
-Mark Bain
+## 1. Setup
 
-## Summary
+- [NPM]. Open project directory in terminal and run `npm install` to install all grunt plugins. See `package.json`for details. 
+- Run `bower install` to download Bower components (and their dependencies) to `/bower_components`. See `bower.json`for details.
+- Run `grunt copyassets`to copy assets from `/bower_components`to the appropriate theme directory. See `Gruntfile.js`for details.
 
-This is the WordPress theme used on [the round](http://the-round.com/).
+## 2. Development
 
-## Usage
+- Run `grunt` to compile your Sass and run the watch task. See `Gruntfile.js`for details.
+- Run `grunt build` to output build files to `/release`. See `Gruntfile.js`for details.
 
-This theme is not intended to be used as-is. Please don't pretend to be what you are not. But if you can learn something from this, great.
+### This project uses Git Flow
 
-### Versioning
+## 3. Deployment
 
-Version numbers should be bumped manually in
+### Scripts
 
-* `README.md`
-* `styles.scss`
+This project comes with a set of shell scripts to aid with deployment, [markbaindesign/mbd-wp-deploy-scripts]. These scripts can either be run manually, or via grunt tasks. For configuration instructions, see [mbd-wp-deploy-scripts/scripts/README.md]. 
 
-### Creating a release
+- Run `grunt import`to run the import script and install the archive currently in `/import`to your local environment.
+- Run `grunt export`to run the export script which creates an archive of your local install in `/export`, ready to upload to your remote environment (staging/production).
 
-This is done manually. 
+### Replacing URLs
+
+Once you have run the import script, you need to change all the URLs in the database. I suggest using [interconnectit/Search-Replace-DB]. 
+
+[NPM]: https://www.npmjs.com/
+[interconnectit/Search-Replace-DB]: https://github.com/interconnectit/Search-Replace-DB
+[markbaindesign/mbd-wp-deploy-scripts]: https://github.com/markbaindesign/mbd-wp-deploy-scripts
+[mbd-wp-deploy-scripts/scripts/README.md]: https://github.com/markbaindesign/mbd-wp-deploy-scripts/blob/master/scripts/README.md

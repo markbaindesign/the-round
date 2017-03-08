@@ -395,8 +395,8 @@ module.exports = function(grunt) {
     */
 
     grunt.registerTask('default', [
-		'sass',
-        'imagemin:dist',
+		// 'sass',
+        // 'imagemin:dist',
         'autoprefixer', 
 		'modernizr',
         // 'jshint',        
@@ -432,7 +432,7 @@ module.exports = function(grunt) {
         // Compile styles
         // Do this because if you haven't run grunt after switching to this branch, 
         // the CSS won't have been updated!
-        'sass',
+        // 'sass',
 
         // Make a copy of files for upload to the server
 
