@@ -2,8 +2,8 @@
 	@include clearfix;
 	width: 100%;
 	max-width: 980px;
-  margin:17px auto;
-	padding: 0;
+  	margin:17px auto;
+	padding: 0 2%;
 	@include bp(small) {
 		padding: 0;
 		margin: 0;
