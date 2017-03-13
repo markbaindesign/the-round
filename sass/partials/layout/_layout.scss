@@ -55,3 +55,16 @@ main {
 	margin: 0 auto;
 	padding: 0 2%;
 }
+
+
+.home{
+	.container {
+		display: table;
+		width: 100%;
+	}
+	.content-container {
+		display: table-cell;
+	    vertical-align: middle;
+	    width: 50%;
+	}
+}

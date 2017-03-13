@@ -429,7 +429,7 @@ html {
 
 body {
   background: transparent;
-  color: #333;
+  color: #666;
   overflow: scroll;
   /* force vertical scroll bar */
 }
@@ -448,7 +448,7 @@ body {
 }
 
 .section {
-  max-width: 600px;
+  max-width: 55em;
   margin: 3em auto 0 auto;
 }
 
@@ -1865,6 +1865,16 @@ main:after {
   padding: 0 2%;
 }
 
+.home .container {
+  display: table;
+  width: 100%;
+}
+.home .content-container {
+  display: table-cell;
+  vertical-align: middle;
+  width: 50%;
+}
+
 /* Header */
 #header {
   position: relative;
@@ -2089,6 +2099,28 @@ img.attachment-creatives-image:active {
   text-shadow: 0px 3px 3px #fff;
 }
 
+.home .section.card {
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 1em;
+}
+.home .section.card img {
+  margin-top: -30px;
+  margin-right: -4em;
+}
+.home .section.card img.alignleft {
+  margin-left: -4em;
+}
+.home #home-cta {
+  padding: 1em;
+  text-align: center;
+  background-color: #ffe079;
+}
+.home #home-cta img {
+  opacity: 0.5;
+  float: right;
+}
+
 /*
 =====================================================
 		
@@ -2097,7 +2129,7 @@ img.attachment-creatives-image:active {
 =====================================================
 */
 body {
-  font-family: 'Droid Sans', "museo-sans", sans-serif;
+  font-family: "museo-sans", sans-serif;
   line-height: 1.5;
   font-size: 13px;
 }
@@ -2112,6 +2144,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
   color: #666;
   clear: none;
+  line-height: 1.25;
 }
 
 #hero h1 {

@@ -7,7 +7,7 @@ html {
 
 body {
 	background: transparent;
-	color: #333;
+	color: #666;
 	overflow: scroll; /* force vertical scroll bar */
 	@include bp(small) {	
 		background-image:		none;
@@ -23,7 +23,7 @@ body {
 }
 
 .section {
-	max-width: 600px;
+	max-width: 55em;
     margin: 3em auto 0 auto;
 }
 blockquote {

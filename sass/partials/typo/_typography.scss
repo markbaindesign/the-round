@@ -7,7 +7,7 @@
 */	
 
 body {
-	font-family: 'Droid Sans', "museo-sans", sans-serif;	
+	font-family: "museo-sans", sans-serif;	
 	line-height: 1.5;
 	font-size: 13px;
 	@include bp(small) {
@@ -25,7 +25,7 @@ h1, h2, h3, h4, h5, h6 {
   	font-weight: 300;
 	color: #666;
 	clear: none;
-
+	line-height: 1.25;
 }
 
 #hero h1 {

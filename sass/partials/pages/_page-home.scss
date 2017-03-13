@@ -110,3 +110,29 @@
 	}
 
 }
+.home {
+	.section {
+		&.card {
+			border-radius: 20px;
+			background-color: #fff;
+			padding: 1em;
+			img	{
+				margin-top: -30px;
+				margin-right: -4em;
+				&.alignleft {
+					margin-left: -4em;
+				}
+			}
+		}
+	}
+	#home-cta {
+
+		padding: 1em;
+		text-align: center;
+		background-color: #ffe079;
+		img	{
+			opacity: 0.5;
+			float: right; 
+		}
+	}
+}
