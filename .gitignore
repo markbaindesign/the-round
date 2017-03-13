@@ -53,7 +53,6 @@ httpdocs/wp-content/mu-plugins/*
 # specify (see the commented-out example for a hint on how to do this.)
 httpdocs/wp-content/themes/*
 !httpdocs/wp-content/themes/the-round/
-httpdocs/wp-content/themes/the-round/style.css
 
 # =========================
 # Operating System Files
