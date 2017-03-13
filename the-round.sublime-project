@@ -57,8 +57,8 @@
 		},
 		{
 			"follow_symlinks": true,
-			"path": "scripts",
-			"name": "Scripts",
+			"path": "bin",
+			"name": "Bin",
 		}
 	]
 }
