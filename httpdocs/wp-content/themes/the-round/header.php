@@ -69,8 +69,8 @@
 
 			<div id="social-media-block">
 				<ul>
-					<li id="twitter"><a href="http://twitter.com/#!/wetheround" title="Follow The Round on Twitter"><span class="visuallyhidden">Twitter</span></a></li>
-					<li id="facebook"><a href="http://www.facebook.com/pages/The-round/196089150427646" title="Befriend The Round on Facebook"><span class="visuallyhidden">Facebook</span></a></li>
+					<li id="twitter"><a href="http://twitter.com/#!/wetheround" title="Follow The Round on Twitter"><i class="fa fa-twitter"></i> <span class="visuallyhidden">Twitter</span></a></li>
+					<li id="facebook"><a href="http://www.facebook.com/pages/The-round/196089150427646" title="Befriend The Round on Facebook"><i class="fa fa-facebook"></i> <span class="visuallyhidden">Facebook</span></a></li>
 				</ul>	
 			</div><!-- #social-media-block -->
 			

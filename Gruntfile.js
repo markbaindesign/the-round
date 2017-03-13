@@ -267,7 +267,7 @@ module.exports = function(grunt) {
                 },
                 files: {
                     '<%= vars.theme_path %>/<%= vars.theme_name %>/style.css': 'sass/styles.scss',
-                    '<%= vars.theme_path %>/<%= vars.theme_name %>/style-custom-login.css': 'sass/custom-login-styles.scss',
+                    // '<%= vars.theme_path %>/<%= vars.theme_name %>/style-custom-login.css': 'sass/custom-login-styles.scss',
                 }
             }
         },
@@ -351,13 +351,13 @@ module.exports = function(grunt) {
                         'shell:project_stats'
                     ]
             },
-            js: {
+            /* js: {
                 files: '<%= jshint.all %>',
                 tasks: [
                     'jshint',
                     'shell:project_stats'
                 ]
-            },
+            },*/
             img: {
                 files: ['<%= vars.theme_path %>/<%= vars.theme_name %>/assets/images/src/*.{png,jpg,jpeg,gif,webp,svg}'],
                 tasks: [
@@ -395,7 +395,7 @@ module.exports = function(grunt) {
     */
 
     grunt.registerTask('default', [
-		// 'sass',
+		'sass',
         // 'imagemin:dist',
         'autoprefixer', 
 		'modernizr',
