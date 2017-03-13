@@ -267,7 +267,7 @@ module.exports = function(grunt) {
                 },
                 files: {
                     '<%= vars.theme_path %>/<%= vars.theme_name %>/style.css': 'sass/styles.scss',
-                    '<%= vars.theme_path %>/<%= vars.theme_name %>/style-custom-login.css': 'sass/custom-login-styles.scss',
+                    // '<%= vars.theme_path %>/<%= vars.theme_name %>/style-custom-login.css': 'sass/custom-login-styles.scss',
                 }
             }
         },
