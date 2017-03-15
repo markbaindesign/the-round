@@ -59,12 +59,16 @@ main {
 
 .home{
 	.container {
-		display: table;
-		width: 100%;
+		@include bp( small ) {
+			display: table;
+			width: 100%;
+		}
 	}
 	.content-container {
-		display: table-cell;
-	    vertical-align: middle;
-	    width: 50%;
+		@include bp( small ) {
+			display: table-cell;
+		    vertical-align: middle;
+		    width: 60%;
+		}
 	}
 }

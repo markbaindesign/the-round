@@ -1865,14 +1865,18 @@ main:after {
   padding: 0 2%;
 }
 
-.home .container {
-  display: table;
-  width: 100%;
+@media (max-width: 37.5em) {
+  .home .container {
+    display: table;
+    width: 100%;
+  }
 }
-.home .content-container {
-  display: table-cell;
-  vertical-align: middle;
-  width: 50%;
+@media (max-width: 37.5em) {
+  .home .content-container {
+    display: table-cell;
+    vertical-align: middle;
+    width: 60%;
+  }
 }
 
 /* Header */
@@ -2108,8 +2112,21 @@ img.attachment-creatives-image:active {
   margin-top: -30px;
   margin-right: -4em;
 }
+@media (max-width: 37.5em) {
+  .home .section.card img {
+    float: none;
+    margin: 0 auto;
+    margin-top: 0;
+    margin-right: 0;
+  }
+}
 .home .section.card img.alignleft {
   margin-left: -4em;
+}
+@media (max-width: 37.5em) {
+  .home .section.card img.alignleft {
+    margin-left: 0;
+  }
 }
 .home #home-cta {
   padding: 1em;

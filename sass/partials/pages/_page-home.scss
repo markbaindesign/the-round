@@ -119,8 +119,17 @@
 			img	{
 				margin-top: -30px;
 				margin-right: -4em;
+				@include bp( small ) {
+					float: none; 
+					margin: 0 auto;
+					margin-top: 0;
+					margin-right: 0;
+				}
 				&.alignleft {
 					margin-left: -4em;
+					@include bp( small ) {
+						margin-left: 0;
+					}
 				}
 			}
 		}
