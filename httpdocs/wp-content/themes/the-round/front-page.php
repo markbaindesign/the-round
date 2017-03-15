@@ -14,7 +14,7 @@
 		<div class="content-container">
 			<header><h2>Welcome to <strong>the round</strong>, a collection of great books for English language teachers.</h2></header>
 			<p>All the products at this site are completely independently published and unbelievably reasonably priced.</p>
-			<div class="read-more"><a href="<?php bloginfo('url' ); ?>/resources" class="cta">See our titles</a></div>
+			<div class="read-more"><a href="<?php bloginfo('url' ); ?>/resources" title="See our titles" class="cta">See our titles</a></div>
 		</div><!-- .content-container -->
 		<img src="<?php bloginfo('template_url'); ?>/assets/images/books.png" class="alignright">
 	</div><!-- .container-class .container -->
@@ -27,7 +27,7 @@
 		<div class="content-container">
 			<header><h2>The round writes methodology books and activity books for English language teachers.</h2></header>
 			<p>Our products are mostly e-books, you can read them in a variety of formats and they are easy to buy. Some of us sell print versions of our books as well. </p>
-			<div class="read-more"><a href="<?php bloginfo('url' ); ?>/resources">See our titles</a></div>
+			<div class="read-more"><a href="<?php bloginfo('url' ); ?>/resources" title="See our titles">See our titles</a></div>
 		</div><!-- .content-container -->   
 	</div><!-- .container-class .container -->
 </div><!-- #id .section-class .section -->
@@ -39,7 +39,7 @@
 		<div class="content-container">
 			<header><h2>All the round's books are extremely reasonably priced</h2></header>
 			<p>Almost all of them are under $10, and quite a few of them are just $1! We don’t think teachers have to pay a lot of money for quality ideas, but we also believe the author should get something too.</p>
-			<div class="read-more"><a href="<?php bloginfo('url' ); ?>/resources">See our titles</a></div>
+			<div class="read-more"><a href="<?php bloginfo('url' ); ?>/resources" title="See our titles">See our titles</a></div>
 		</div><!-- .content-container -->
 		<img src="<?php bloginfo('template_url'); ?>/assets/images/piggy-bank.png" class="alignright">   
 	</div><!-- .container-class .container -->
@@ -52,7 +52,7 @@
 		<div class="content-container">			
 			<header><h2>The round is an independent collective of experienced and first-time writers. </h2></header>
 			<p>Each author sells his or her own book.  All the books at the round have gone through a selection and professional editing process.</p>
-			<span class="read-more"><a href="<?php bloginfo('url' ); ?>/creatives">See our creatives</a></span>
+			<span class="read-more"><a href="<?php bloginfo('url' ); ?>/creatives" title="See our creatives">See our creatives</a></span>
 		</div><!-- .content-container -->   
 	</div><!-- .container-class .container -->
 </div><!-- #id .section-class .section -->
@@ -62,7 +62,7 @@
 	<div class="container">
 		<div class="content-container">		
 			<div class="content-container">			
-				<header><h2><a href="#" class="cta">See all the titles</a></h2></header>
+				<header><h2><a href="<?php bloginfo('url' ); ?>/resources" title="See our titles" class="cta">See all the titles</a></h2></header>
 			</div><!-- .content-container -->
 		</div><!-- .content-container -->   
 	</div><!-- ..container -->
