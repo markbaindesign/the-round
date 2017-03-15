@@ -57,18 +57,3 @@ main {
 }
 
 
-.home{
-	.container {
-		@include bp( small ) {
-			display: table;
-			width: 100%;
-		}
-	}
-	.content-container {
-		@include bp( small ) {
-			display: table-cell;
-		    vertical-align: middle;
-		    width: 60%;
-		}
-	}
-}

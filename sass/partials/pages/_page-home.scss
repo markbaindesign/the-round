@@ -116,32 +116,54 @@
 			border-radius: 20px;
 			background-color: #fff;
 			padding: 1em;
+			.container {
+				display: table;
+				width: 100%;
+				@include bp( small ) {
+					display: block;
+				}
+			}
+			.content-container {
+				display: table-cell;
+			    vertical-align: middle;
+			    width: 60%;
+				@include bp( small ) {
+					display: block;
+					width: 100%;
+				}
+			}
 			img	{
 				margin-top: -30px;
 				margin-right: -4em;
 				@include bp( small ) {
+					display: block;
 					float: none; 
 					margin: 0 auto;
-					margin-top: 0;
-					margin-right: 0;
 				}
 				&.alignleft {
 					margin-left: -4em;
 					@include bp( small ) {
-						margin-left: 0;
+						margin: 0 auto;
 					}
 				}
 			}
+			&#intro {background: none;}
 		}
 	}
-	#home-cta {
-
-		padding: 1em;
+	.cta {
+		padding: 1rem;
+		margin-bottom: 1rem;
 		text-align: center;
-		background-color: #ffe079;
-		img	{
-			opacity: 0.5;
-			float: right; 
+    	background: #ff7474;
+    	color: white;
+		@include bp( small ) {
+			display: block;
+		}
+	}
+	#store-cta {
+		text-align: right;
+		@include bp( small ) {
+			text-align: center;
 		}
 	}
 }
