@@ -287,3 +287,12 @@ function theround_post_meta() {
 	}
 
 }
+
+function theround_defunct_blog() {
+	$content = '<div class="card">
+					<h1>The round blog</h1>
+					<div>3rd March, 1970&mdash;19th June, 2017</div>
+					<p>Skateboard crucifix lyft, food truck ugh polaroid edison bulb neutra meh kale chips gentrify deep v pabst lumbersexual. Lo-fi leggings ugh messenger bag, jean shorts gentrify tote bag celiac mustache master cleanse pinterest. Wolf meditation celiac prism.</p>
+				</div>';
+	print $content;
+}
