@@ -112,16 +112,14 @@
 }
 .home {
 	.section {
-		&.card {
+		.card {
 			border-radius: 20px;
 			background-color: #fff;
 			padding: 1em;
-			.container {
-				display: table;
-				width: 100%;
-				@include bp( small ) {
-					display: block;
-				}
+			display: table;
+			width: 100%;
+			@include bp( small ) {
+				display: block;
 			}
 			.content-container {
 				display: table-cell;
@@ -147,7 +145,11 @@
 					}
 				}
 			}
-			&#intro {background: none;}
+		}
+		&#intro {
+			.card {
+				background: none;
+			}
 		}
 	}
 	.cta {

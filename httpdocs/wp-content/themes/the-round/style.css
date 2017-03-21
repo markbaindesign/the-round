@@ -1787,6 +1787,12 @@ li#title {
   padding-right: 11px;
 }
 
+.card {
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 1em;
+}
+
 #wrapper {
   width: 100%;
   max-width: 980px;
@@ -2089,51 +2095,49 @@ img.attachment-creatives-image:active {
   text-shadow: 0px 3px 3px #fff;
 }
 
-.home .section.card {
+.home .section .card {
   border-radius: 20px;
   background-color: #fff;
   padding: 1em;
-}
-.home .section.card .container {
   display: table;
   width: 100%;
 }
 @media (max-width: 37.5em) {
-  .home .section.card .container {
+  .home .section .card {
     display: block;
   }
 }
-.home .section.card .content-container {
+.home .section .card .content-container {
   display: table-cell;
   vertical-align: middle;
   width: 60%;
 }
 @media (max-width: 37.5em) {
-  .home .section.card .content-container {
+  .home .section .card .content-container {
     display: block;
     width: 100%;
   }
 }
-.home .section.card img {
+.home .section .card img {
   margin-top: -30px;
   margin-right: -4em;
 }
 @media (max-width: 37.5em) {
-  .home .section.card img {
+  .home .section .card img {
     display: block;
     float: none;
     margin: 0 auto;
   }
 }
-.home .section.card img.alignleft {
+.home .section .card img.alignleft {
   margin-left: -4em;
 }
 @media (max-width: 37.5em) {
-  .home .section.card img.alignleft {
+  .home .section .card img.alignleft {
     margin: 0 auto;
   }
 }
-.home .section.card#intro {
+.home .section#intro .card {
   background: none;
 }
 .home .cta {
