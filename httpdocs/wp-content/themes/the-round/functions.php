@@ -292,7 +292,7 @@ function theround_defunct_blog() {
 	$content = '<div class="card">
 					<header><h2>The round blog</h2></header>
 					<div class="meta">3rd March, 1970&mdash;19th June, 2017</div>
-					<p>Skateboard crucifix lyft, food truck ugh polaroid edison bulb neutra meh kale chips gentrify deep v pabst lumbersexual. Lo-fi leggings ugh messenger bag, jean shorts gentrify tote bag celiac mustache master cleanse pinterest. Wolf meditation celiac prism.</p>
+					<p>We began the round in 2011 with the clear idea that we wanted to release innovative, different and cheap ebooks for language teachers. And for the years following our launch, that\'s where we focused most of our energies. At first we also decided to keep a blog, where we would share our mission statement, announcements about new titles and details about our journey. But as the years went by, we found ourselves neglecting this part of the site more and more. There are still some interesting posts in there for anyone interested in self-publishing or finding out more about how the round began. However, we will no longer be providing any updates until further notice. Thanks!</p>
 				</div>';
 	print $content;
 }
