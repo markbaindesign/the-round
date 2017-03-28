@@ -289,10 +289,13 @@ function theround_post_meta() {
 }
 
 function theround_defunct_blog() {
-	$content = '<div class="card">
-					<header><h2>The round blog</h2></header>
-					<div class="meta">3rd March, 1970&mdash;19th June, 2017</div>
-					<p>We began the round in 2011 with the clear idea that we wanted to release innovative, different and cheap ebooks for language teachers. And for the years following our launch, that\'s where we focused most of our energies. At first we also decided to keep a blog, where we would share our mission statement, announcements about new titles and details about our journey. But as the years went by, we found ourselves neglecting this part of the site more and more. There are still some interesting posts in there for anyone interested in self-publishing or finding out more about how the round began. However, we will no longer be providing any updates until further notice. Thanks!</p>
-				</div>';
-	print $content;
+	?>
+		<div class="card">
+			<header><h2>The round blog</h2></header>
+			<div class="subtitle">23rd September, 2011 &mdash; 30th July, 2015</div>
+			<p>We began the round in 2011 with the clear idea that we wanted to release innovative, different and cheap ebooks for language teachers. And for the years following our launch, that&apos;s where we focused most of our energies. At first we also decided to keep a blog, where we would share our mission statement, announcements about new titles and details about our journey. But as the years went by, we found ourselves neglecting this part of the site more and more.</p>
+			<p>There are still some interesting posts in there for anyone interested in self-publishing or finding out more about how the round began. However, we will no longer be providing any updates until further notice.</p>
+			<p>Thanks!</p>
+		</div>
+	<?php
 }
