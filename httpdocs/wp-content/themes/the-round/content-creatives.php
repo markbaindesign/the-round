@@ -26,7 +26,64 @@
 						if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned to it.
 							the_post_thumbnail('creatives-image');
 						} 
-?></div><?php the_content(); ?>
+?></div>
+
+						<?php the_content(); ?>
+						<div class="clearfix"></div>
+						<?php
+							/**
+							 * Show the connected Titles
+							 */
+
+							$post_type = get_post_type();
+							$connected_type = 'creatives_to_titles';
+								
+							$connected_posts = new WP_Query( array( // Find connected pages
+								'connected_type' => $connected_type,
+								'connected_items' => $post,
+								'nopaging' => true,
+								'post__not_in' => get_option("sticky_posts"),
+							) ); 
+						?>
+						<?php if ( $connected_posts->have_posts() ) : ?>
+							<div class="connect-titles clearfix">
+								<h2>Titles</h2>
+									<?php while ( $connected_posts->have_posts() ) : $connected_posts->the_post(); 
+										$post_link = get_the_permalink();
+										$post_title = get_the_title();
+									?>
+						 				<div class="recent-resources-content clearfix">
+					
+					<div class="resource-thumb">
+						<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>" alt="<?php the_title(); ?>">
+							<?php if ( has_post_thumbnail() ) { 
+							  the_post_thumbnail('labs-thumb');
+							} 
+							?>
+						</a>
+					</div>
+					
+					<div class="resource-meta">
+						<p class="resource-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></p>
+						
+						<p class="resource-author">
+							<a href="<?php bloginfo('url'); ?>/creatives/<?php echo get_post_meta($post->ID, 'creative-slug', true); ?>"><?php echo get_post_meta($post->ID, 'creative', true); ?></a>
+							
+							<?php if ( get_post_meta($post->ID, 'creative2', true)) {?>
+								| <a href="<?php bloginfo('url'); ?>/creatives/<?php echo get_post_meta($post->ID, 'creative2-slug', true); ?>"><?php echo get_post_meta($post->ID, 'creative2', true); ?></a>
+							<?php } ?>
+
+							<?php if ( get_post_meta($post->ID, 'creative3', true)) {?>
+								| <a href="<?php bloginfo('url'); ?>/creatives/<?php echo get_post_meta($post->ID, 'creative3-slug', true); ?>"><?php echo get_post_meta($post->ID, 'creative3', true); ?></a>
+							<?php } ?>
+						</p>
+						
+					</div><!-- .resource-meta -->
+				</div>
+									<?php endwhile; ?>
+									<?php wp_reset_postdata(); ?>
+							</div><!-- .connect-titles -->
+						<?php endif; ?>
 					</div><!-- .entry-content -->
 						<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'twentyten' ), 'after' => '</div>' ) ); ?>
 

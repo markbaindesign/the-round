@@ -18,22 +18,34 @@
 			<a href="#purchase-options" title="Go to purchase options&nbsp;&darr;"><?php if ( has_post_thumbnail() ) { the_post_thumbnail(array( 250,354 )); } ?></a>
 		</div>
 		<div id="title-block" >
-			<h2>
-				<a href="<?php the_permalink() ?>" ><?php the_title(); ?></a>
-			</h2>
-				
-						<p class="resource-author">
-							<a href="<?php bloginfo('url'); ?>/creatives/<?php echo get_post_meta($post->ID, 'creative-slug', true); ?>"><?php echo get_post_meta($post->ID, 'creative', true); ?></a>
-							
-							<?php if ( get_post_meta($post->ID, 'creative2', true)) {?>
-								| <a href="<?php bloginfo('url'); ?>/creatives/<?php echo get_post_meta($post->ID, 'creative2-slug', true); ?>"><?php echo get_post_meta($post->ID, 'creative2', true); ?></a>
-							<?php } ?>
+			<h2><a href="<?php the_permalink() ?>" ><?php the_title(); ?></a></h2>
+			<?php
+				/**
+				 * Show the connected Creatives
+				 */
 
-							<?php if ( get_post_meta($post->ID, 'creative3', true)) {?>
-								| <a href="<?php bloginfo('url'); ?>/creatives/<?php echo get_post_meta($post->ID, 'creative3-slug', true); ?>"><?php echo get_post_meta($post->ID, 'creative3', true); ?></a>
-							<?php } ?>
-						</p>
-				
+				$post_type = get_post_type();
+				$connected_type = 'creatives_to_titles';
+					
+				$connected_posts = new WP_Query( array( // Find connected pages
+					'connected_type' => $connected_type,
+					'connected_items' => $post,
+					'nopaging' => true,
+					'post__not_in' => get_option("sticky_posts"),
+				) ); 
+
+				if ( $connected_posts->have_posts() ) : ?>
+					<ul class="resource-author">
+						<?php while ( $connected_posts->have_posts() ) : $connected_posts->the_post(); 
+							$post_link = get_the_permalink();
+							$post_title = get_the_title();
+						?>
+			 				<li><a href="<?php echo $post_link; ?>" title="Read <?php echo $post_title; ?>&apos;s bio"><span><?php echo $post_title; ?></span></a></li>
+						<?php endwhile; ?>
+						<?php wp_reset_postdata(); ?>
+					</ul><!-- .resource-author -->
+				<?php endif; ?>
+
 				<?php // get_template_part( 'content', 'testimonial'); ?>
 				
 				<?php if( get_post_meta($post->ID, 'price-pounds', true)|| get_post_meta($post->ID, 'price-euros', true)||get_post_meta($post->ID, 'price-dollars', true))   { ?>
@@ -217,6 +229,7 @@
 
 
 	</div>
+	<?php get_template_part( 'suggested-titles' ); ?>
 	<div class="spacer">
 
 		

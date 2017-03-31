@@ -135,3 +135,41 @@ function mbd_theround_custom_post_feed_request($qv) {
 	return $qv;
 	
 }
+
+/**
+ * Order titles results A-Z by title
+ */
+function baindesign324_reorder_posts_titles( $query ) {
+    if( isset($query->query_vars['post_type']) && $query->query_vars['post_type'] == 'resources' ) {          
+        $query->set('orderby', 'post_title');	
+        $query->set('order', 'ASC');
+    }
+}
+add_action( 'pre_get_posts', 'baindesign324_reorder_posts_titles' );
+
+/**
+ * Order titles results A-Z by title
+ */
+function baindesign324_reorder_posts_creatives( $query ) {
+    if( isset($query->query_vars['post_type']) && $query->query_vars['post_type'] == 'creative' ) {          
+        $query->set('orderby', 'post_title');	
+        // $query->set('meta_key', 'last_name');	 
+        $query->set('order', 'ASC');
+    }
+}
+add_action( 'pre_get_posts', 'baindesign324_reorder_posts_creatives' );
+
+/**
+ * Connect Creatives to Titles
+ */
+function baindesign324_post_to_posts_types() {
+	    
+    p2p_register_connection_type( array(
+        'name' => 'creatives_to_titles',
+        'from' => 'resource',
+        'to' => 'creatives'
+    ) );
+
+}
+
+add_action( 'p2p_init', 'baindesign324_post_to_posts_types' );
