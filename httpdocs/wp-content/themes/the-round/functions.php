@@ -7,6 +7,11 @@
  */
 require get_template_directory() . '/lib/inc/custom-comment.php';
 
+/**
+ * Load bundled Advanced Custom Fields plugin.
+ */
+require get_template_directory() . '/lib/inc/acf-bundled.php';
+
 // Set up
 
 add_action( 'init', 'theround_theme_setup' );
