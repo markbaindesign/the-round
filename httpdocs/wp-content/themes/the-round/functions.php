@@ -304,3 +304,37 @@ function theround_defunct_blog() {
 		</div>
 	<?php
 }
+
+/**
+ * Order title by custom field
+ **/
+
+
+function theround_custom_title_order( $query ) {
+    if( isset( $query->query_vars['post_type']) && !is_admin() && $query->query_vars['post_type'] == 'resource' ) {          
+        $query->set('orderby', 'meta_value');	
+        $query->set('meta_key', 'ordering_title');	 
+        $query->set('order', 'ASC');
+    }
+
+    // return
+	return $query;
+}
+add_action( 'pre_get_posts', 'theround_custom_title_order' );
+
+/**
+ * Order Creatives by last name
+ **/
+
+
+function theround_custom_creative_order( $query ) {
+    if( isset( $query->query_vars['post_type']) && !is_admin() && $query->query_vars['post_type'] == 'creatives' ) {          
+        $query->set('orderby', 'meta_value');	
+        $query->set('meta_key', 'ordering_name');	 
+        $query->set('order', 'ASC');
+    }
+
+    // return
+	return $query;
+}
+add_action( 'pre_get_posts', 'theround_custom_creative_order' );
