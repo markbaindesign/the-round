@@ -7,6 +7,8 @@
 				// Custom query to display creatives in random order
 				$args = array(
 					'post_type' => 'creatives',
+					'orderby' => 'post_title',
+					'order' => 'ASC',
 					'paged' => $paged
 				);
 

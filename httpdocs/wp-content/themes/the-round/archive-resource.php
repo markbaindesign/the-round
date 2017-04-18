@@ -7,7 +7,9 @@
 			<?php 
 				$loop = new WP_Query( array( 
 					'post_type' => 'resource',
-					'posts_per_page' => 25
+					'orderby' => 'post_title',
+					'order' => 'ASC',
+					'posts_per_page' => 40
 				) ); 
 			?> 
 			

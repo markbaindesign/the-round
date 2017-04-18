@@ -9,10 +9,8 @@
 				
 				<ul id="fullpage-footer-list">
 					 <li><span style="color: #B30000;">&copy;</span><a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a> &#8212; <?php bloginfo( 'description' ); ?></li>
-					 <li><a href="<?php bloginfo('rss2_url'); ?>" title="Get updates from The Round by RSS">RSS</a></li>
-					 <li><a href="http://www.facebook.com/pages/The-round/196089150427646" title="Befriend The Round on Facebook">Facebook</a></li>
-					 <li><a href="http://twitter.com/#!/wetheround" title="Follow The Round on Twitter">Twitter</a></li>
-					 <li>Site, logo &amp; covers by <a href="http://markbaindesign.com">markbaindesign</a></li>
+					 <li>Built by <a href="http://bain.design">bain.design</a></li>
+					 <li>Home icons by <a href="http://www.flaticon.com/authors/zlatko-najdenovski">Zlatko Najdenovski</a></li>
 				 </ul> 
 					 
 			</div>
@@ -60,8 +58,11 @@
 					</div>
 				
 				<div id="credit">
-					Website by <a href="http://markbaindesign.com">Mark Bain Design</a>
+					Built by <a href="http://markbaindesign.com">Mark Bain Design</a>
 				</div>
+
+				<div>Home icons by <a href="http://www.flaticon.com/authors/zlatko-najdenovski">Zlatko Najdenovski</a></div>
+
 				
 				 <div id="back-to-top">
 					 <a href="#wrapper" title="You've reached the end; click here to go back to the top">Back to top &uarr;</a> 

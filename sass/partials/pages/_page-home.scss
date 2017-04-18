@@ -1,0 +1,171 @@
+.home {
+	
+	.readmore {
+		margin-top: 10px;
+		float: right;
+	}
+
+	.header-banner {
+		display: block;
+	}
+}
+
+.latest-titles div {
+	width: 28.66666666666667%;
+
+ 	float: left;
+	margin-right: 7%;
+
+	a {
+		display: block;
+		height: auto;			
+		
+		img {
+			width: 100%;
+			height: auto;
+			border: 1px solid #ccc;
+
+			&:hover {
+				box-shadow: 4px 6px 10px #DDD;
+			}
+		}
+
+	}
+
+	&:last-of-type {
+		margin-right: 0;
+	}
+
+}
+
+/* Latest blog posts */
+
+.latest-blog-posts {
+	ul {
+		padding: 0;
+	}
+	li {
+		list-style: none;
+	}
+	span {
+		margin-right: 44px;
+		display: inline-block;
+		@include bp(small) {
+			display: none;
+		}
+	}
+}
+
+/* Creatives */
+
+.latest-creatives div {
+	width: 14.4%;
+
+ 	float: left;
+	margin-right: 7%;
+
+	a {
+		display: block;
+		height: auto;			
+		
+		img {
+			width: 100%;
+			height: auto;
+			border: 1px solid #ccc;
+			border-radius: 50%;
+		}
+
+	}
+
+	&:last-of-type {
+		margin-right: 0;
+	}
+
+}
+
+/* New Title Home Template */
+
+#new-title-container {
+		
+	#content {
+		padding-top: 1em;
+		margin: 0;
+		width: 100%;
+
+		@include bp(small) {
+			margin: 0;
+			padding: 0 3%;
+		}
+
+	}
+
+	#page-title  { /* "New in the round" */
+		text-transform: lowercase;
+		font-size: 1.25em;
+		font-family: "museo-sans", 'Droid Sans', sans-serif;
+		color: #666;
+		line-height: 1.5em;
+		margin: 0 0 1em 0;
+		text-shadow: 0px 3px 3px #fff;
+	}
+
+}
+.home {
+	.section {
+		.card {
+			border-radius: 20px;
+			background-color: #fff;
+			padding: 1em;
+			display: table;
+			width: 100%;
+			@include bp( small ) {
+				display: block;
+			}
+			.content-container {
+				display: table-cell;
+			    vertical-align: middle;
+			    width: 60%;
+				@include bp( small ) {
+					display: block;
+					width: 100%;
+				}
+			}
+			img	{
+				margin-top: -30px;
+				margin-right: -4em;
+				@include bp( small ) {
+					display: block;
+					float: none; 
+					margin: 0 auto;
+				}
+				&.alignleft {
+					margin-left: -4em;
+					@include bp( small ) {
+						margin: 0 auto;
+					}
+				}
+			}
+		}
+		&#intro {
+			.card {
+				background: none;
+			}
+		}
+	}
+	.cta {
+		padding: 1rem;
+		margin-bottom: 1rem;
+		text-align: center;
+    	background: #ff7474;
+    	color: white;
+		@include bp( small ) {
+			display: block;
+		}
+	}
+	#store-cta {
+		text-align: right;
+		@include bp( small ) {
+			text-align: center;
+		}
+	}
+}

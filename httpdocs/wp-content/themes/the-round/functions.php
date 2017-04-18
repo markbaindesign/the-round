@@ -7,6 +7,11 @@
  */
 require get_template_directory() . '/lib/inc/custom-comment.php';
 
+/**
+ * Load bundled Advanced Custom Fields plugin.
+ */
+require get_template_directory() . '/lib/inc/acf-bundled.php';
+
 // Set up
 
 add_action( 'init', 'theround_theme_setup' );
@@ -287,3 +292,49 @@ function theround_post_meta() {
 	}
 
 }
+
+function theround_defunct_blog() {
+	?>
+		<div class="card">
+			<header><h2>The round blog</h2></header>
+			<div class="subtitle">23rd September, 2011 &mdash; 30th July, 2015</div>
+			<p>We began the round in 2011 with the clear idea that we wanted to release innovative, different and cheap ebooks for language teachers. And for the years following our launch, that&apos;s where we focused most of our energies. At first we also decided to keep a blog, where we would share our mission statement, announcements about new titles and details about our journey. But as the years went by, we found ourselves neglecting this part of the site more and more.</p>
+			<p>There are still some interesting posts in there for anyone interested in self-publishing or finding out more about how the round began. However, we will no longer be providing any updates until further notice.</p>
+			<p>Thanks!</p>
+		</div>
+	<?php
+}
+
+/**
+ * Order title by custom field
+ **/
+
+
+function theround_custom_title_order( $query ) {
+    if( isset( $query->query_vars['post_type']) && !is_admin() && $query->query_vars['post_type'] == 'resource' ) {          
+        $query->set('orderby', 'meta_value');	
+        $query->set('meta_key', 'ordering_title');	 
+        $query->set('order', 'ASC');
+    }
+
+    // return
+	return $query;
+}
+add_action( 'pre_get_posts', 'theround_custom_title_order' );
+
+/**
+ * Order Creatives by last name
+ **/
+
+
+function theround_custom_creative_order( $query ) {
+    if( isset( $query->query_vars['post_type']) && !is_admin() && $query->query_vars['post_type'] == 'creatives' ) {          
+        $query->set('orderby', 'meta_value');	
+        $query->set('meta_key', 'ordering_name');	 
+        $query->set('order', 'ASC');
+    }
+
+    // return
+	return $query;
+}
+add_action( 'pre_get_posts', 'theround_custom_creative_order' );
